@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <title>Silahlandırma Yarışı 1 - Puan Hesaplama</title>
     <style>
+        #home-link {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+}
+
+#home-icon {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
         body {
             font-family: 'Arial', sans-serif;
             background-color: #1a1a1a;
@@ -107,6 +119,9 @@
     </style>
 </head>
 <body>
+    <a href="index.html" id="home-link">
+        <img src="ana sayfa.jpg" alt="Ana Sayfa" id="home-icon">
+      </a>
     <h1>Silahlandırma Yarışı 1 - Puan Hesaplama</h1>
     <div class="container">
         <!-- Önceki Veri Girişleri -->
@@ -121,17 +136,17 @@
             <div id="fireDustScore" class="score"></div>
         </div>
         <div class="input-group">
-            <label for="buildBoost">İnşaat Hızlandırması(dk)</label>
+            <label for="buildBoost">İnşaat Hızlandırması</label>
             <input type="number" id="buildBoost" placeholder="Değer girin">
             <div id="buildBoostScore" class="score"></div>
         </div>
         <div class="input-group">
-            <label for="troopBoost">Asker Hızlandırması(dk)</label>
+            <label for="troopBoost">Asker Hızlandırması</label>
             <input type="number" id="troopBoost" placeholder="Değer girin">
             <div id="troopBoostScore" class="score"></div>
         </div>
         <div class="input-group">
-            <label for="researchBoost">Araştırma Hızlandırması(dk)</label>
+            <label for="researchBoost">Araştırma Hızlandırması</label>
             <input type="number" id="researchBoost" placeholder="Değer girin">
             <div id="researchBoostScore" class="score"></div>
         </div>
