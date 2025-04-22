@@ -1,153 +1,226 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Donanım Yükseltme Hesaplayıcı</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      padding: 20px;
-    }
-    .container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      max-width: 800px;
-      position: absolute;
-      left: 20px;
-      top: 20px;
-    }
-    h2 {
-      text-align: center;
-    }
-    .donanim-group {
-      margin-bottom: 20px;
-    }
-    .donanim-group h3 {
-      margin-bottom: 10px;
-    }
-    .donanim {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .donanim div {
-      width: 80%;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-    }
-    .result-box {
-      margin-top: 10px;
-      padding: 10px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-    }
-    button {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      background-color: #2c7be5;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #1a5fd0;
-    }
-    .result-summary {
-      margin-top: 20px;
-      padding: 10px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-    }
-    body {
-  transform: scale(0.70);
-  transform-origin: top left;
-}
-  </style>
+    <meta charset="UTF-8">
+    <title>Silahlandırma Yarışı 1 - Puan Hesaplama</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            color: #4CAF50;
+        }
+        .container {
+            max-width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .input-group, .entry-group {
+            width: 45%;
+            margin: 10px 0;
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .input-group:hover, .entry-group:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+        }
+        .section {
+            width: 100%;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #333, #444);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .section h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #FFD700; /* Altın rengi */
+        }
+        .entry-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #ffffffb3; /* Hafif transparan beyaz */
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.2s, border 0.2s;
+        }
+        input:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 8px #4CAF50;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #45a049, #388e3c);
+            transform: scale(1.05);
+        }
+        .score {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #FFD700; /* Altın rengi */
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <h2>Donanım Yükseltme Hesaplayıcı</h2>
-
-  <div class="donanim-group">
-    <h3>Mızrakçı Donanımları</h3>
-    <div class="donanim">
-      <div>
-        <label>Kafalık</label>
-        <select id="headFrom"></select>
-        <select id="headTo"></select>
-        <div id="headResult" class="result-box"></div>
-      </div>
-      <div>
-        <label>Pusula</label>
-        <select id="compassFrom"></select>
-        <select id="compassTo"></select>
-        <div id="compassResult" class="result-box"></div>
-      </div>
+    <h1>Silahlandırma Yarışı 1 - Puan Hesaplama</h1>
+    <div class="container">
+        <!-- Önceki Veri Girişleri -->
+        <div class="input-group">
+            <label for="fireCrystal">Ateş Kristali Sayısı</label>
+            <input type="number" id="fireCrystal" placeholder="Değer girin">
+            <div id="fireCrystalScore" class="score"></div>
+        </div>
+        <div class="input-group">
+            <label for="fireDust">Ateş Kristali Tozu Sayısı</label>
+            <input type="number" id="fireDust" placeholder="Değer girin">
+            <div id="fireDustScore" class="score"></div>
+        </div>
+        <div class="input-group">
+            <label for="buildBoost">İnşaat Hızlandırması</label>
+            <input type="number" id="buildBoost" placeholder="Değer girin">
+            <div id="buildBoostScore" class="score"></div>
+        </div>
+        <div class="input-group">
+            <label for="troopBoost">Asker Hızlandırması</label>
+            <input type="number" id="troopBoost" placeholder="Değer girin">
+            <div id="troopBoostScore" class="score"></div>
+        </div>
+        <div class="input-group">
+            <label for="researchBoost">Araştırma Hızlandırması</label>
+            <input type="number" id="researchBoost" placeholder="Değer girin">
+            <div id="researchBoostScore" class="score"></div>
+        </div>
+        <div class="input-group">
+            <label for="mythHero">Mitik Kahraman Parçası</label>
+            <input type="number" id="mythHero" placeholder="Değer girin">
+            <div id="mythHeroScore" class="score"></div>
+        </div>
+        <div class="input-group">
+            <label for="epicHero">Epik Kahraman Parçası</label>
+            <input type="number" id="epicHero" placeholder="Değer girin">
+            <div id="epicHeroScore" class="score"></div>
+        </div>
+        <div class="input-group">
+            <label for="rareHero">Ender Kahraman Parçası</label>
+            <input type="number" id="rareHero" placeholder="Değer girin">
+            <div id="rareHeroScore" class="score"></div>
+        </div>
+        <!-- Yeni Şef Donanımı Girişleri -->
+        <div class="section">
+            <h2>Şef Donanımı</h2>
+        </div>
+        <div class="section">
+            <h2>Mızrakçı</h2>
+            <div class="entry-row">
+                <div class="entry-group">
+                    <label for="headgearFrom">Kafalık (Başlangıç)</label>
+                    <select id="headgearFrom"></select>
+                    <label for="headgearTo">Kafalık (Hedef)</label>
+                    <select id="headgearTo"></select>
+                    <div id="headgearScore" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="compassFrom">Pusula (Başlangıç)</label>
+                    <select id="compassFrom"></select>
+                    <label for="compassTo">Pusula (Hedef)</label>
+                    <select id="compassTo"></select>
+                    <div id="compassScore" class="score"></div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Piyade</h2>
+            <div class="entry-row">
+                <div class="entry-group">
+                    <label for="chestFrom">Göğüslük (Başlangıç)</label>
+                    <select id="chestFrom"></select>
+                    <label for="chestTo">Göğüslük (Hedef)</label>
+                    <select id="chestTo"></select>
+                    <div id="chestScore" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="pantsFrom">Pantolon (Başlangıç)</label>
+                    <select id="pantsFrom"></select>
+                    <label for="pantsTo">Pantolon (Hedef)</label>
+                    <select id="pantsTo"></select>
+                    <div id="pantsScore" class="score"></div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Nişancı</h2>
+            <div class="entry-row">
+                <div class="entry-group">
+                    <label for="ringFrom">Yüzük (Başlangıç)</label>
+                    <select id="ringFrom"></select>
+                    <label for="ringTo">Yüzük (Hedef)</label>
+                    <select id="ringTo"></select>
+                    <div id="ringScore" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="staffFrom">Baston (Başlangıç)</label>
+                    <select id="staffFrom"></select>
+                    <label for="staffTo">Baston (Hedef)</label>
+                    <select id="staffTo"></select>
+                    <div id="staffScore" class="score"></div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="donanim-group">
-    <h3>Piyade Donanımları</h3>
-    <div class="donanim">
-      <div>
-        <label>Göğüslük</label>
-        <select id="chestFrom"></select>
-        <select id="chestTo"></select>
-        <div id="chestResult" class="result-box"></div>
-      </div>
-      <div>
-        <label>Pantolon</label>
-        <select id="pantsFrom"></select>
-        <select id="pantsTo"></select>
-        <div id="pantsResult" class="result-box"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="donanim-group">
-    <h3>Nişancı Donanımları</h3>
-    <div class="donanim">
-      <div>
-        <label>Baston</label>
-        <select id="staffFrom"></select>
-        <select id="staffTo"></select>
-        <div id="staffResult" class="result-box"></div>
-      </div>
-      <div>
-        <label>Yüzük</label>
-        <select id="ringFrom"></select>
-        <select id="ringTo"></select>
-        <div id="ringResult" class="result-box"></div>
-      </div>
-    </div>
-  </div>
-  <label for="multiplier">Etkinlik Çarpanı:</label>
-<input type="number" id="multiplier" value="1" min="1">
+    <button type="button" onclick="calculateTotalScore()">Şef Donanımı Puanını Hesapla</button>
+    <div class="result" id="totalScore">Genel Toplam Puan: </div>
 
 
-  <button onclick="hepsiHesapla()">HESAPLA</button>
 
-  <div id="summary" class="result-summary"></div>
-</div>
-
-<script>
-const levels = [
+    
+    <script>
+        
+        const levels = [
   { code: 101, seviye: "Epic", puan: 0, alloy: 0, solution: 0, plans: 60, amber: 0 },
   { code: 102, seviye: "Epic ★", puan: 3230, alloy: 0, solution: 0, plans: 70, amber: 0 },
   { code: 103, seviye: "Epic ★★", puan: 3225, alloy: 6500, solution: 65, plans: 40, amber: 0 },
@@ -186,81 +259,73 @@ const levels = [
   { code: 136, seviye: "Legendary T3 ★★★", puan: 9560, alloy: 86000, solution: 1070, plans: 180, amber: 25 }
 ];
 
-// Donanım adı, başlangıç ve hedef select ID'si, sonuç alanı ID'si
-const donanimlar = [
-  { ad: "Kafalık", from: "headFrom", to: "headTo", result: "headResult" },
-  { ad: "Pusula", from: "compassFrom", to: "compassTo", result: "compassResult" },
-  { ad: "Göğüslük", from: "chestFrom", to: "chestTo", result: "chestResult" },
-  { ad: "Pantolon", from: "pantsFrom", to: "pantsTo", result: "pantsResult" },
-  { ad: "Baston", from: "staffFrom", to: "staffTo", result: "staffResult" },
-  { ad: "Yüzük", from: "ringFrom", to: "ringTo", result: "ringResult" },
-];
+        const equipment = [
+            { from: "headgearFrom", to: "headgearTo" },
+            { from: "compassFrom", to: "compassTo" },
+            { from: "chestFrom", to: "chestTo" },
+            { from: "pantsFrom", to: "pantsTo" },
+            { from: "ringFrom", to: "ringTo" },
+            { from: "staffFrom", to: "staffTo" }
+        ];
 
-// Seçenekleri doldur
-donanimlar.forEach(d => {
-  const fromSel = document.getElementById(d.from);
-  const toSel = document.getElementById(d.to);
-  levels.forEach(level => {
-    const option = document.createElement('option');
-    option.value = level.code;
-    option.textContent = level.seviye;
-    fromSel.appendChild(option);
-    toSel.appendChild(option.cloneNode(true));
-  });
-  toSel.selectedIndex = levels.length - 1;
-});
+        // Dropdown menülerini seviyelerle doldurma
+        equipment.forEach(e => {
+            const fromDropdown = document.getElementById(e.from);
+            const toDropdown = document.getElementById(e.to);
 
-function hepsiHesapla() {
-    let toplamPuan = 0, toplamAlloy = 0, toplamSolution = 0, toplamPlans = 0, toplamAmber = 0;
+            levels.forEach(level => {
+                const option = document.createElement("option");
+                option.value = level.code;
+                option.textContent = level.seviye;
 
-    const multiplier = parseFloat(document.getElementById('multiplier').value) || 1;
+                fromDropdown.appendChild(option);
+                toDropdown.appendChild(option.cloneNode(true));
+            });
+            toDropdown.selectedIndex = levels.length - 1; // Varsayılan en yüksek seviye
+        });
 
-    donanimlar.forEach(d => {
-        const from = parseInt(document.getElementById(d.from).value);
-        const to = parseInt(document.getElementById(d.to).value);
+        function calculateTotalScore() {
+    // 1. Donanım puanını al
+    let equipmentScore = 0;
+    equipment.forEach(e => {
+        const fromCode = parseInt(document.getElementById(e.from).value);
+        const toCode = parseInt(document.getElementById(e.to).value);
 
-        const resultEl = document.getElementById(d.result);
-        if (from >= to) {
-            resultEl.innerHTML = "<b>Hedef seviye, başlangıçtan yüksek olmalı.</b>";
-            return;
-        }
+        if (fromCode >= toCode) return; // Hatalı giriş kontrolü
 
-        const aralik = levels.filter(l => l.code > from && l.code <= to);
-        const toplam = aralik.reduce((acc, l) => {
-            acc.puan += l.puan * multiplier;  // Çarpan sadece puana uygulanıyor
-            acc.alloy += l.alloy;  // Sabit kalıyor
-            acc.solution += l.solution;  // Sabit kalıyor
-            acc.plans += l.plans;  // Sabit kalıyor
-            acc.amber += l.amber;  // Sabit kalıyor
-            return acc;
-        }, { puan: 0, alloy: 0, solution: 0, plans: 0, amber: 0 });
+        const scoreRange = levels.filter(level => level.code > fromCode && level.code <= toCode);
+        const totalEquipmentScore = scoreRange.reduce((sum, level) => sum + level.puan, 0);
 
-        toplamPuan += toplam.puan;
-        toplamAlloy += toplam.alloy;
-        toplamSolution += toplam.solution;
-        toplamPlans += toplam.plans;
-        toplamAmber += toplam.amber;
-
-        resultEl.innerHTML = `
-            <div><strong>Toplam Puan:</strong> ${toplam.puan}</div>
-            <div><strong>Sert Alaşım:</strong> ${toplam.alloy}</div>
-            <div><strong>Cila Çözeltisi:</strong> ${toplam.solution}</div>
-            <div><strong>Tasarım Planı:</strong> ${toplam.plans}</div>
-            <div><strong>Amber:</strong> ${toplam.amber}</div>
-        `;
+        equipmentScore += totalEquipmentScore;
     });
 
-    document.getElementById('summary').innerHTML = `
-        <h3>Genel Toplam</h3>
-        <div><strong>Toplam Puan:</strong> ${toplamPuan}</div>
-        <div><strong>Sert Alaşım:</strong> ${toplamAlloy}</div>
-        <div><strong>Cila Çözeltisi:</strong> ${toplamSolution}</div>
-        <div><strong>Tasarım Planı:</strong> ${toplamPlans}</div>
-        <div><strong>Amber:</strong> ${toplamAmber}</div>
-    `;
+    // 2. Diğer puanlar
+    const fireCrystal = (parseFloat(document.getElementById('fireCrystal').value) || 0) * 100;
+    const fireDust = (parseFloat(document.getElementById('fireDust').value) || 0) * 50;
+    const buildBoost = parseFloat(document.getElementById('buildBoost').value) || 0;
+    const troopBoost = parseFloat(document.getElementById('troopBoost').value) || 0;
+    const researchBoost = parseFloat(document.getElementById('researchBoost').value) || 0;
+    const mythHero = (parseFloat(document.getElementById('mythHero').value) || 0) * 125;
+    const epicHero = (parseFloat(document.getElementById('epicHero').value) || 0) * 50;
+    const rareHero = (parseFloat(document.getElementById('rareHero').value) || 0) * 15;
+
+    // 3. Alt metinleri güncelle
+    document.getElementById('fireCrystalScore').innerText = `Puan: ${fireCrystal}`;
+    document.getElementById('fireDustScore').innerText = `Puan: ${fireDust}`;
+    document.getElementById('buildBoostScore').innerText = `Puan: ${buildBoost}`;
+    document.getElementById('troopBoostScore').innerText = `Puan: ${troopBoost}`;
+    document.getElementById('researchBoostScore').innerText = `Puan: ${researchBoost}`;
+    document.getElementById('mythHeroScore').innerText = `Puan: ${mythHero}`;
+    document.getElementById('epicHeroScore').innerText = `Puan: ${epicHero}`;
+    document.getElementById('rareHeroScore').innerText = `Puan: ${rareHero}`;
+
+    // 4. Toplamı birleştir
+    const totalScore = equipmentScore + fireCrystal + fireDust + buildBoost + troopBoost + researchBoost + mythHero + epicHero + rareHero;
+
+    // 5. Ekrana yaz
+    document.getElementById('totalScore').innerText = `Toplam Puan: ${totalScore.toLocaleString()}`;
 }
 
-
-</script>
+    </script>
 </body>
 </html>
