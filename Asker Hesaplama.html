@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesaplama Aracı</title>
+    <style>
+        #home-link {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+}
+
+#home-icon {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #211212;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 18px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" id="home-link">
+    <img src="ana sayfa.jpg" alt="Ana Sayfa" id="home-icon">
+  </a>
+    <div class="container">
+        <label for="input1">Eğitim Hızı Miktarı(saat)</label>
+        <input type="number" id="input1">
+        
+        <label for="input2">1 asker için istenen eğitim hızı(saniye)</label>
+        <input type="number" id="input2">
+        
+        <button onclick="calculate()">Hesapla</button>
+        
+        <p>Sonuç: <span id="result"></span></p>
+    </div>
+
+    <script>
+        function calculate() {
+            let input1 = parseFloat(document.getElementById("input1").value);
+            let input2 = parseFloat(document.getElementById("input2").value);
+            
+            if (input2 === 0) {
+                document.getElementById("result").innerText = "Bölme hatası! 0'a bölünemez.";
+            } else {
+                let result = (input1 * 3600) / input2;
+                document.getElementById("result").innerText = result;
+            }
+        }
+    </script>
+</body>
+</html>
