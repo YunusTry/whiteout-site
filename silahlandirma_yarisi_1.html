@@ -312,6 +312,7 @@
         const totalEquipmentScore = scoreRange.reduce((sum, level) => sum + level.puan, 0);
 
         equipmentScore += totalEquipmentScore;
+        equipmentScore = equipmentScore*3;
     });
 
     // 2. Diğer puanlar
