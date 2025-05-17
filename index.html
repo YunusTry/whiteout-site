@@ -4,6 +4,27 @@
         <meta charset="UTF-8">
         <title>Oyun Etkinlikleri Merkezi</title>
         <style>
+            #home-linkin {
+                position: fixed; /* Ekranda sabit kalır */
+                bottom: 10px;
+                left: 10px;
+                z-index: 999;
+            }
+
+            #home-icondin {
+                width: 90px;      /* Küçük ikon boyutu */
+                height: 90px;
+                border-radius: 8px; /* Hafif köşeleri yumuşatır */
+                cursor: pointer;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge */
+                transition: transform 0.2s ease, opacity 0.2s ease;
+            }
+
+            #home-iconin:hover {
+                transform: scale(1.1);
+                opacity: 0.85;
+
+            }
             #home-linkd {
                 position: fixed; /* Ekranda sabit kalır */
                 bottom: 10px;
@@ -117,6 +138,9 @@
         </style>
     </head>
     <body>
+        <a href="https://www.instagram.com/yunusworkout/" id="home-linkin">
+        <img src="insta.jpg" alt="instagram" id="home-iconin">
+      </a>
         <a href="https://discord.gg/MT5gnFcq" id="home-linkd">
         <img src="discord.jpg" alt="Dicsord" id="home-icond">
       </a>
