@@ -112,7 +112,10 @@
     justify-content: center;
     padding: 40px;
 }
-
+.no-click {
+    pointer-events: none;
+    cursor: default;
+}
 .card {
     width: 300px;
     margin: 20px;
@@ -162,26 +165,26 @@
         <h1>Whiteout Survial Etkinlikleri</h1>
         <div class="container">
             <div class="card">
-                <a href="buz_alani_kral.html">
-                    <img src="buz alanı kralı.jpg" alt="Buz Alanı Kralı" onclick="return false;">
+                <a href="buz_alani_kral.html" class="no-click">
+                    <img src="buz alanı kralı.jpg" alt="Buz Alanı Kralı" >
                     <h2>Buz Alanı Kralı</h2>
                 </a>
             </div>
             <div class="card">
-                <a href="en_guclu_eyalet.html">
-                    <img src="en güçlü eyalet.jpg" alt="En Güçlü Eyalet" onclick="return false;">
+                <a href="en_guclu_eyalet.html" class="no-click">
+                    <img src="en güçlü eyalet.jpg" alt="En Güçlü Eyalet" >
                     <h2>En Güçlü Eyalet</h2>
                 </a>
             </div>
             <div class="card">
-                <a href="seflarin_salonu.html">
-                    <img src="seflerin salonu.jpg" alt="Şeflerin Salonu" onclick="return false;">
+                <a href="seflarin_salonu.html" class="no-click">
+                    <img src="seflerin salonu.jpg" alt="Şeflerin Salonu" >
                     <h2>Şeflerin Salonu</h2>
                 </a>
             </div>
             <div class="card">
-                <a href="ozel_etkinlik.html">
-                    <img src="özel etkinlik.jpg" alt="Özel Etkinlik" onclick="return false;">
+                <a href="ozel_etkinlik.html" class="no-click">
+                    <img src="özel etkinlik.jpg" alt="Özel Etkinlik" >
                     <h2>Özel Etkinlik</h2>
                 </a>
             </div>
