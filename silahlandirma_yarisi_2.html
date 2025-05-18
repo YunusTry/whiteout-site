@@ -274,7 +274,10 @@
   { code: 135, seviye: "Legendary T3 ★★", puan: 9560, alloy: 83000, solution: 1030, plans: 160, amber: 25 },
   { code: 136, seviye: "Legendary T3 ★★★", puan: 9560, alloy: 86000, solution: 1070, plans: 180, amber: 25 }
 ];
-
+        const updatedlevels = levels.map(item => ({
+            ...item,
+            puan: item.puan * 3
+        }));
         const equipment = [
             { from: "headgearFrom", to: "headgearTo" },
             { from: "compassFrom", to: "compassTo" },
@@ -309,11 +312,11 @@
 
         if (fromCode >= toCode) return; // Hatalı giriş kontrolü
 
-        const scoreRange = levels.filter(level => level.code > fromCode && level.code <= toCode);
+        const scoreRange = updatedlevels.filter(level => level.code > fromCode && level.code <= toCode);
         const totalEquipmentScore = scoreRange.reduce((sum, level) => sum + level.puan, 0);
 
         equipmentScore += totalEquipmentScore;
-        equipmentScore = equipmentScore*3;
+        
     });
 
     // 2. Diğer puanlar
