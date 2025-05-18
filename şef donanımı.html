@@ -17,20 +17,25 @@
   cursor: pointer;
 }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #1a1a1a;
-      padding: 20px;
-    }
-    .container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      max-width: 800px;
-      position: absolute;
-      left: 740px;
-      top: 40 px;
-    }
+  
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  max-width: 1200px; /* Daha geniş alan */
+  width: 90%; /* Ekranın %90'ını kaplasın */
+  margin: auto;
+}
     h2 {
       text-align: center;
     }
@@ -152,9 +157,7 @@
       </div>
     </div>
   </div>
-  <label for="multiplier">Etkinlik Çarpanı:</label>
-<input type="number" id="multiplier" value="1" min="1">
-
+  
 
   <button onclick="hepsiHesapla()">HESAPLA</button>
 
@@ -226,9 +229,9 @@ donanimlar.forEach(d => {
 });
 
 function hepsiHesapla() {
-    let toplamPuan = 0, toplamAlloy = 0, toplamSolution = 0, toplamPlans = 0, toplamAmber = 0;
+    let  toplamAlloy = 0, toplamSolution = 0, toplamPlans = 0, toplamAmber = 0;
 
-    const multiplier = parseFloat(document.getElementById('multiplier').value) || 1;
+    
 
     donanimlar.forEach(d => {
         const from = parseInt(document.getElementById(d.from).value);
@@ -242,22 +245,21 @@ function hepsiHesapla() {
 
         const aralik = levels.filter(l => l.code > from && l.code <= to);
         const toplam = aralik.reduce((acc, l) => {
-            acc.puan += l.puan * multiplier;  // Çarpan sadece puana uygulanıyor
             acc.alloy += l.alloy;  // Sabit kalıyor
             acc.solution += l.solution;  // Sabit kalıyor
             acc.plans += l.plans;  // Sabit kalıyor
             acc.amber += l.amber;  // Sabit kalıyor
             return acc;
-        }, { puan: 0, alloy: 0, solution: 0, plans: 0, amber: 0 });
+        }, { alloy: 0, solution: 0, plans: 0, amber: 0 });
 
-        toplamPuan += toplam.puan;
+        
         toplamAlloy += toplam.alloy;
         toplamSolution += toplam.solution;
         toplamPlans += toplam.plans;
         toplamAmber += toplam.amber;
 
         resultEl.innerHTML = `
-            <div><strong>Toplam Puan:</strong> ${toplam.puan}</div>
+            
             <div><strong>Sert Alaşım:</strong> ${toplam.alloy}</div>
             <div><strong>Cila Çözeltisi:</strong> ${toplam.solution}</div>
             <div><strong>Tasarım Planı:</strong> ${toplam.plans}</div>
@@ -267,7 +269,7 @@ function hepsiHesapla() {
 
     document.getElementById('summary').innerHTML = `
         <h3>Genel Toplam</h3>
-        <div><strong>Toplam Puan:</strong> ${toplamPuan}</div>
+        
         <div><strong>Sert Alaşım:</strong> ${toplamAlloy}</div>
         <div><strong>Cila Çözeltisi:</strong> ${toplamSolution}</div>
         <div><strong>Tasarım Planı:</strong> ${toplamPlans}</div>
