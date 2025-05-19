@@ -136,6 +136,11 @@
             <div id="fireDustScore" class="score"></div>
         </div>
         <div class="input-group">
+            <label for="arıtılmış">Arıtılmış Ateş Kristali Sayısı</label>
+            <input type="number" id="arıtılmış" placeholder="Değer girin">
+            <div id="arıtılmışScore" class="score"></div>
+        </div>
+        <div class="input-group">
             <label for="buildBoost">İnşaat Hızlandırması(dk)</label>
             <input type="number" id="buildBoost" placeholder="Değer girin">
             <div id="buildBoostScore" class="score"></div>
@@ -328,7 +333,7 @@
     const mythHero = (parseFloat(document.getElementById('mythHero').value) || 0) * 125;
     const epicHero = (parseFloat(document.getElementById('epicHero').value) || 0) * 50;
     const rareHero = (parseFloat(document.getElementById('rareHero').value) || 0) * 15;
-
+    const arıtılmış = (parseFloat(document.getElementById('arıtılmış').value) || 0) * 1500;
     // 3. Alt metinleri güncelle
     document.getElementById('fireCrystalScore').innerText = `Puan: ${fireCrystal}`;
     document.getElementById('fireDustScore').innerText = `Puan: ${fireDust}`;
@@ -338,9 +343,10 @@
     document.getElementById('mythHeroScore').innerText = `Puan: ${mythHero}`;
     document.getElementById('epicHeroScore').innerText = `Puan: ${epicHero}`;
     document.getElementById('rareHeroScore').innerText = `Puan: ${rareHero}`;
+    document.getElementById('arıtılmışScore').innerText = `Puan: ${arıtılmış}`;
 
     // 4. Toplamı birleştir
-    const totalScore = equipmentScore + fireCrystal + fireDust + buildBoost + troopBoost + researchBoost + mythHero + epicHero + rareHero;
+    const totalScore = equipmentScore + arıtılmış + fireCrystal + fireDust + buildBoost + troopBoost + researchBoost + mythHero + epicHero + rareHero;
 
     // 5. Ekrana yaz
     document.getElementById('totalScore').innerText = `Toplam Puan: ${totalScore.toLocaleString()}`;
