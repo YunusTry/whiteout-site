@@ -22,23 +22,7 @@
             color: #e0f7fa;
             text-align: center;
         }
-        #cookie-consent {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: #222;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        z-index: 1000;
-        }
-        #cookie-consent button {
-        margin: 0 10px;
-        padding: 8px 16px;
-        border: none;
-        cursor: pointer;
-        }
+        
 
         header {
             background: linear-gradient(90deg, #2196f3, #21cbf3);
@@ -142,13 +126,7 @@
         <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
     </div>
 </header>
-<div id="cookie-consent">
-  Bu web sitesi deneyiminizi geliştirmek için çerezler kullanır. 
-  <a href="/cerez-politikasi.html" style="color: #ccc;">Detaylı bilgi</a>
-  <br>
-  <button onclick="acceptCookies()">Kabul Et</button>
-  <button onclick="declineCookies()">Reddet</button>
-</div>
+
 <div class="container">
     <div class="card">
         <a href="buz_alani_kral.html" class="no-click">
@@ -224,39 +202,6 @@
     </div>
 </div>
 </body>
-<script>
-function acceptCookies() {
-  localStorage.setItem('cookieConsent', 'true');
-  document.getElementById('cookie-consent').style.display = 'none';
-  loadTrackingScripts(); // Onay alınca yükle
-}
-
-function declineCookies() {
-  localStorage.setItem('cookieConsent', 'false');
-  document.getElementById('cookie-consent').style.display = 'none';
-}
-
-function loadTrackingScripts() {
-  // Örneğin Google Analytics sadece buradan çalışsın
-  const script = document.createElement('script');
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X';
-  script.async = true;
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'G-S6EJVH5Q2S');
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  const consent = localStorage.getItem('cookieConsent');
-  if (consent === 'true') {
-    document.getElementById('cookie-consent').style.display = 'none';
-    loadTrackingScripts();
-  } else if (consent === 'false') {
-    document.getElementById('cookie-consent').style.display = 'none';
-  }
-});
-</script>
+    <script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"></script>
+<script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="U3B0d86WckPs7V" async></script>
 </html>
