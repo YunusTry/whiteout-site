@@ -1,242 +1,202 @@
-    <!DOCTYPE html>
-    <html lang="tr">
-    <head>
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-S6EJVH5Q2S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6EJVH5Q2S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-S6EJVH5Q2S');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiteout Survival Etkinlikleri</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #1e1e2f;
+            color: #e0f7fa;
+            text-align: center;
+        }
 
-  gtag('config', 'G-S6EJVH5Q2S');
-</script>
-        <meta charset="UTF-8">
-        <title>Oyun Etkinlikleri Merkezi</title>
-        <style>
-            #home-linkin {
-                position: fixed; /* Ekranda sabit kalır */
-                bottom: 10px;
-                left: 10px;
-                z-index: 999;
+        header {
+            background: linear-gradient(90deg, #2196f3, #21cbf3);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-icons a img {
+            width: 42px;
+            height: 42px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-icons a img:hover {
+            transform: scale(1.15);
+            opacity: 0.85;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 50px 20px;
+            gap: 20px;
+        }
+
+        .card {
+            width: 300px;
+            background: #2a2a3d;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h2 {
+            padding: 16px;
+            font-size: 19px;
+            color: #ffffff;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .navbar-title {
+                font-size: 1.4em;
+                text-align: center;
+                width: 100%;
+                margin-bottom: 10px;
             }
 
-            #home-iconin {
-                width: 90px;      /* Küçük ikon boyutu */
-                height: 90px;
-                border-radius: 8px; /* Hafif köşeleri yumuşatır */
-                cursor: pointer;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge */
-                transition: transform 0.2s ease, opacity 0.2s ease;
+            .nav-icons {
+                justify-content: center;
+                width: 100%;
             }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="navbar-title">Whiteout Survival Etkinlikleri</div>
+    <div class="nav-icons">
+        <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
+        <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+        <a href="https://discord.gg/MT5gnFcq" target="_blank"><img src="discord.jpg" alt="Discord"></a>
+        <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
+    </div>
+</header>
 
-            #home-iconin:hover {
-                transform: scale(1.1);
-                opacity: 0.85;
-
-            }
-            #home-linkd {
-                position: fixed; /* Ekranda sabit kalır */
-                bottom: 10px;
-                right: 10px;
-                z-index: 999;
-            }
-
-            #home-icond {
-                width: 90px;      /* Küçük ikon boyutu */
-                height: 90px;
-                border-radius: 8px; /* Hafif köşeleri yumuşatır */
-                cursor: pointer;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge */
-                transition: transform 0.2s ease, opacity 0.2s ease;
-            }
-
-            #home-icond:hover {
-                transform: scale(1.1);
-                opacity: 0.85;
-
-            }
-            #home-link {
-                position: fixed; /* Ekranda sabit kalır */
-                top: 10px;
-                left: 10px;
-                z-index: 999;
-            }
-
-            #home-icon {
-                width: 90px;      /* Küçük ikon boyutu */
-                height: 90px;
-                border-radius: 8px; /* Hafif köşeleri yumuşatır */
-                cursor: pointer;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge */
-                transition: transform 0.2s ease, opacity 0.2s ease;
-            }
-
-            #home-icon:hover {
-                transform: scale(1.1);
-                opacity: 0.85;
-
-            }
-            #home-linki {
-                position: fixed; /* Ekranda sabit kalır */
-                top: 10px;
-                right: 10px;
-                z-index: 999;
-            }
-
-            #home-iconi {
-                width: 90px;      /* Küçük ikon boyutu */
-                height: 90px;
-                border-radius: 8px; /* Hafif köşeleri yumuşatır */
-                cursor: pointer;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Hafif gölge */
-                transition: transform 0.2s ease, opacity 0.2s ease;
-            }
-
-            #home-iconi:hover {
-                transform: scale(1.1);
-                opacity: 0.85;
-
-            }
-            
-            * { margin: 0; padding: 0; box-sizing: border-box; }
-            body {
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: rgb(87, 181, 198);
-    text-align: center;
-}
-
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 40px;
-}
-.no-click {
-    pointer-events: none;
-    cursor: default;
-}
-.card {
-    width: 300px;
-    margin: 20px;
-    background: #222;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: 0.3s;
-}
-
-.card img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.card h2 {
-    padding: 15px;
-    font-size: 18px;
-    text-align: center;
-}
-
-/* Altı çizgiyi kaldır ve bağlantı rengini miras al */
-.card a {
-    text-decoration: none;
-    color: inherit;
-}
-
-        </style>
-    </head>
-    <body>
-        <a href="https://www.instagram.com/yunusworkout/" id="home-linkin" target="_blank" >
-        <img src="insta.jpg" alt="instagram" id="home-iconin">
-      </a>
-        <a href="https://discord.gg/MT5gnFcq" id="home-linkd" target="_blank">
-        <img src="discord.jpg" alt="Dicsord" id="home-icond">
-      </a>
-        <a href="index.html" id="home-link">
-        <img src="ana sayfa.jpg" alt="Ana Sayfa" id="home-icon">
-      </a>
-        <a href="https://www.youtube.com/@BlackTED" id="home-linki" target="_blank">
-            <img src="black.jpg" alt="Ana Sayfa" id="home-iconi">
-          </a>
-        <h1>Whiteout Survival Etkinlikleri</h1>
-        <div class="container">
-            <div class="card">
-                <a href="buz_alani_kral.html" class="no-click">
-                    <img src="buz alanı kralı.jpg" alt="Buz Alanı Kralı" >
-                    <h2>Buz Alanı Kralı</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="en_guclu_eyalet.html" >
-                    <img src="en güçlü eyalet.jpg" alt="En Güçlü Eyalet" >
-                    <h2>En Güçlü Eyalet</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="seflarin_salonu.html" class="no-click">
-                    <img src="seflerin salonu.jpg" alt="Şeflerin Salonu" >
-                    <h2>Şeflerin Salonu</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="ozel_etkinlik.html" class="no-click">
-                    <img src="özel etkinlik.jpg" alt="Özel Etkinlik" >
-                    <h2>Özel Etkinlik</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="silahlandirma_yarisi_1.html">
-                    <img src="silahlandirma_yarisi_1.jpg" alt="1. Silahlandırma Yarışı">
-                    <h2>1. Silahlanma Yarışı</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="subay_projesi_1.html">
-                    <img src="subay 1.jpg" alt="1. Subay Projesi">
-                    <h2>1. Subay Projesi</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="silahlandirma_yarisi_2.html">
-                    <img src="silahlandirma_yarisi_2.jpg" alt="2. Silahlandırma Yarışı">
-                    <h2>2. Silahlanma Yarışı</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="subay_projesi_2.html">
-                    <img src="subay 2.jpg" alt="2. Subay Projesi">
-                    <h2>2. Subay Projesi</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="şef donanımı.html">
-                    <img src="şef donanımı.jpg" alt="Yeni Fotoğraf">
-                    <h2>Şef Donanımı Gerekli Malzeme Hesaplama</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="tılsım hesaplama.html">
-                    <img src="şef tılsımı.jpg" alt="Yeni Fotoğraf">
-                    <h2>Şef Tılsımı Gerekli Malzeme Hesaplama</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="Asker Hesaplama.html">
-                    <img src="askerrhesaplama.jpg" alt="Yeni Fotoğraf">
-                    <h2>Asker Eğitimi Hesaplama</h2>
-                </a>
-            </div>
-            <div class="card">
-                <a href="eyalet transferi.html">
-                    <img src="eyalettransferi.jpg" alt="En Güçlü Eyalet">
-                    <h2>Eyalet Transferi Grupları</h2>
-                </a>
-            </div>
-            
-        </div>
-    </body>
-    </html>
+<div class="container">
+    <div class="card">
+        <a href="buz_alani_kral.html" class="no-click">
+            <img src="buz alanı kralı.jpg" alt="Buz Alanı Kralı">
+            <h2>Buz Alanı Kralı</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="en_guclu_eyalet.html">
+            <img src="en güçlü eyalet.jpg" alt="En Güçlü Eyalet">
+            <h2>En Güçlü Eyalet</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="seflarin_salonu.html" class="no-click">
+            <img src="seflerin salonu.jpg" alt="Şeflerin Salonu">
+            <h2>Şeflerin Salonu</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="ozel_etkinlik.html" class="no-click">
+            <img src="özel etkinlik.jpg" alt="Özel Etkinlik">
+            <h2>Özel Etkinlik</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="silahlandirma_yarisi_1.html">
+            <img src="silahlandirma_yarisi_1.jpg" alt="1. Silahlandırma Yarışı">
+            <h2>1. Silahlanma Yarışı</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="subay_projesi_1.html">
+            <img src="subay 1.jpg" alt="1. Subay Projesi">
+            <h2>1. Subay Projesi</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="silahlandirma_yarisi_2.html">
+            <img src="silahlandirma_yarisi_2.jpg" alt="2. Silahlandırma Yarışı">
+            <h2>2. Silahlanma Yarışı</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="subay_projesi_2.html">
+            <img src="subay 2.jpg" alt="2. Subay Projesi">
+            <h2>2. Subay Projesi</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="şef donanımı.html">
+            <img src="şef donanımı.jpg" alt="Şef Donanımı">
+            <h2>Şef Donanımı Gerekli Malzeme Hesaplama</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="tılsım hesaplama.html">
+            <img src="şef tılsımı.jpg" alt="Şef Tılsımı">
+            <h2>Şef Tılsımı Gerekli Malzeme Hesaplama</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="Asker Hesaplama.html">
+            <img src="askerrhesaplama.jpg" alt="Asker Eğitimi">
+            <h2>Asker Eğitimi Hesaplama</h2>
+        </a>
+    </div>
+    <div class="card">
+        <a href="eyalet transferi.html">
+            <img src="eyalettransferi.jpg" alt="Eyalet Transferi">
+            <h2>Eyalet Transferi Grupları</h2>
+        </a>
+    </div>
+</div>
+</body>
+</html>
