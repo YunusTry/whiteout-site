@@ -105,59 +105,151 @@
 <div class="container">
   <h2>Tılsım Yükseltme Hesaplayıcı</h2>
 
-  <div class="donanim-group">
-    <h3>Mızrakçı Tılsımları</h3>
-    <div class="donanim">
-      <div>
-        <label>Kafalık</label>
-        <select id="headFrom"></select>
-        <select id="headTo"></select>
-        <div id="headResult" class="result-box"></div>
-      </div>
-      <div>
-        <label>Pusula</label>
-        <select id="compassFrom"></select>
-        <select id="compassTo"></select>
-        <div id="compassResult" class="result-box"></div>
-      </div>
+ <div class="section">
+            <h2>Şef Tılsımı</h2>
+        </div>
+        <div class="section">
+            <h2>Mızrakçı</h2>
+            <div class="entry-row">
+                <div class="entry-group">
+                    <label for="headcharmFrom1">Kafalık (Başlangıç 1)</label>
+                    <select id="headcharmFrom1"></select>
+                    <label for="headcharmTo1">Kafalık (Hedef 1)</label>
+                    <select id="headcharmTo1"></select>
+                    <div id="headcharmScore1" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="headcharmFrom2">Kafalık (Başlangıç 2)</label>
+                    <select id="headcharmFrom2"></select>
+                    <label for="headcharmTo2">Kafalık (Hedef 2)</label>
+                    <select id="headcharmTo2"></select>
+                    <div id="headcharmScore2" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="headcharmFrom3">Kafalık (Başlangıç 3)</label>
+                    <select id="headcharmFrom3"></select>
+                    <label for="headcharmTo3">Kafalık (Hedef 3)</label>
+                    <select id="headcharmTo3"></select>
+                    <div id="headcharmScore3" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="compasFrom1">Pusula (Başlangıç)</label>
+                    <select id="compasFrom1"></select>
+                    <label for="compasTo1">Pusula (Hedef)</label>
+                    <select id="compasTo1"></select>
+                    <div id="compascore1" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="compasFrom2">Pusula (Başlangıç)</label>
+                    <select id="compasFrom2"></select>
+                    <label for="compasTo2">Pusula (Hedef)</label>
+                    <select id="compasTo2"></select>
+                    <div id="compascore2" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="compasFrom3">Pusula (Başlangıç)</label>
+                    <select id="compasFrom3"></select>
+                    <label for="compasTo3">Pusula (Hedef)</label>
+                    <select id="compasTo3"></select>
+                    <div id="compascore3" class="score"></div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Piyade</h2>
+            <div class="entry-row">
+                <div class="entry-group">
+                    <label for="chestsFrom1">Göğüslük (Başlangıç)</label>
+                    <select id="chestsFrom1"></select>
+                    <label for="chestsTo1">Göğüslük (Hedef)</label>
+                    <select id="chestsTo1"></select>
+                    <div id="chestsScore1" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="chestsFrom2">Göğüslük (Başlangıç)</label>
+                    <select id="chestsFrom2"></select>
+                    <label for="chestsTo2">Göğüslük (Hedef)</label>
+                    <select id="chestsTo2"></select>
+                    <div id="chestsScore2" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="chestsFrom3">Göğüslük (Başlangıç)</label>
+                    <select id="chestsFrom3"></select>
+                    <label for="chestsTo3">Göğüslük (Hedef)</label>
+                    <select id="chestsTo3"></select>
+                    <div id="chestsScore3" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="pantFrom1">Pantolon (Başlangıç)</label>
+                    <select id="pantFrom1"></select>
+                    <label for="pantTo1">Pantolon (Hedef)</label>
+                    <select id="pantTo1"></select>
+                    <div id="pantScore1" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="pantFrom2">Pantolon (Başlangıç)</label>
+                    <select id="pantFrom2"></select>
+                    <label for="pantTo2">Pantolon (Hedef)</label>
+                    <select id="pantTo2"></select>
+                    <div id="pantScore2" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="pantFrom3">Pantolon (Başlangıç)</label>
+                    <select id="pantFrom3"></select>
+                    <label for="pantTo3">Pantolon (Hedef)</label>
+                    <select id="pantTo3"></select>
+                    <div id="pantScore3" class="score"></div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Nişancı</h2>
+            <div class="entry-row">
+                <div class="entry-group">
+                    <label for="ringsFrom1">Yüzük (Başlangıç)</label>
+                    <select id="ringsFrom1"></select>
+                    <label for="ringsTo1">Yüzük (Hedef)</label>
+                    <select id="ringsTo1"></select>
+                    <div id="ringsScore1" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="ringsFrom2">Yüzük (Başlangıç)</label>
+                    <select id="ringsFrom2"></select>
+                    <label for="ringsTo2">Yüzük (Hedef)</label>
+                    <select id="ringsTo2"></select>
+                    <div id="ringsScore2" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="ringsFrom3">Yüzük (Başlangıç)</label>
+                    <select id="ringsFrom3"></select>
+                    <label for="ringsTo3">Yüzük (Hedef)</label>
+                    <select id="ringsTo3"></select>
+                    <div id="ringsScore3" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="stafFrom1">Baston (Başlangıç)</label>
+                    <select id="stafFrom1"></select>
+                    <label for="stafTo1">Baston (Hedef)</label>
+                    <select id="stafTo1"></select>
+                    <div id="stafScore1" class="score"></div>
+                </div>
+                <div class="entry-group">
+                    <label for="stafFrom2">Baston (Başlangıç)</label>
+                    <select id="stafFrom2"></select>
+                    <label for="stafTo2">Baston (Hedef)</label>
+                    <select id="stafTo2"></select>
+                    <div id="stafScore2" class="score"></div>   
+                </div>
+                <div class="entry-group">
+                    <label for="stafFrom3">Baston (Başlangıç)</label>
+                    <select id="stafFrom3"></select>
+                    <label for="stafTo3">Baston (Hedef)</label>
+                    <select id="stafTo3"></select>
+                    <div id="stafScore3" class="score"></div>   
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="donanim-group">
-    <h3>Piyade Tılsımları</h3>
-    <div class="donanim">
-      <div>
-        <label>Göğüslük</label>
-        <select id="chestFrom"></select>
-        <select id="chestTo"></select>
-        <div id="chestResult" class="result-box"></div>
-      </div>
-      <div>
-        <label>Pantolon</label>
-        <select id="pantsFrom"></select>
-        <select id="pantsTo"></select>
-        <div id="pantsResult" class="result-box"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="donanim-group">
-    <h3>Nişancı Tılsımları</h3>
-    <div class="donanim">
-      <div>
-        <label>Baston</label>
-        <select id="staffFrom"></select>
-        <select id="staffTo"></select>
-        <div id="staffResult" class="result-box"></div>
-      </div>
-      <div>
-        <label>Yüzük</label>
-        <select id="ringFrom"></select>
-        <select id="ringTo"></select>
-        <div id="ringResult" class="result-box"></div>
-      </div>
-    </div>
-  </div>
   
 
 
