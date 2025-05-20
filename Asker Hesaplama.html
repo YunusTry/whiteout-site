@@ -149,10 +149,10 @@
 
   <script>
     function calculate() {
-      const trainingTime = parseFloat(document.getElementById("trainingTime").value);
-      const piyadeHours = parseFloat(document.getElementById("piyade").value);
-      const mizrakciHours = parseFloat(document.getElementById("mizrakci").value);
-      const nisanciHours = parseFloat(document.getElementById("nisanci").value);
+      const trainingTime = parseFloat(document.getElementById("trainingTime").value) || 0;
+      const piyadeHours = parseFloat(document.getElementById("piyade").value) || 0;
+      const mizrakciHours = parseFloat(document.getElementById("mizrakci").value) || 0;
+      const nisanciHours = parseFloat(document.getElementById("nisanci").value) || 0;
       const troopLevel = document.getElementById("troopLevel").value;
 
       if (trainingTime === 0 || isNaN(trainingTime)) {
