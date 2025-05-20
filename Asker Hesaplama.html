@@ -108,6 +108,7 @@
 
     <label for="troopLevel">Asker Seviyesi Seçin (T1-T10)</label>
     <select id="troopLevel">
+      <option value="T11">T11</option>
       <option value="T10">T10</option>
       <option value="T9">T9</option>
       <option value="T8">T8</option>
@@ -166,6 +167,11 @@
       const nisanciCount = (nisanciHours * 3600) / trainingTime;
 
       const resources = {
+    T11: {
+        piyade: { et: 6970, odun: 5228, komur: 1220, demir: 253 },
+        mizrakci: { et: 6099, odun: 5751, komur: 1185, demir: 271 },
+        nisanci: { et: 4357, odun: 6448, komur: 1081, demir: 349 }
+    },
     T10: {
         piyade: { et: 2788, odun: 2091, komur: 488, demir: 102 },
         mizrakci: { et: 2440, odun: 2301, komur: 474, demir: 109 },
