@@ -2,363 +2,198 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Tılsım Yükseltme Hesaplayıcı</title>
+  <title>Şef Tılsımı Hesaplama</title>
   <style>
-    #home-link {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 999;
-}
-
-#home-icon {
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
-}
     body {
-  
-  font-family: Arial, sans-serif;
-  background-color: #1a1a1a;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #2c3e50, #4ca1af);
   padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  color: #ecf0f1;
 }
 
-.container {
-  background: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  max-width: 1200px; /* Daha geniş alan */
-  width: 90%; /* Ekranın %90'ını kaplasın */
-  margin: auto;
+h1 {
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+}
 
-    }
-    h2 {
-      text-align: center;
-    }
-    .donanim-group {
-      margin-bottom: 20px;
-    }
-    .donanim-group h3 {
-      margin-bottom: 10px;
-    }
-    .donanim {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .donanim div {
-      width: 80%;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-    }
-    select {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-    }
-    .result-box {
-      margin-top: 10px;
-      padding: 10px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-    }
-    button {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      background-color: #2c7be5;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #1a5fd0;
-    }
-    .result-summary {
-      margin-top: 20px;
-      padding: 10px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-    }
-    body {
-  transform: scale(0.75);
-  transform-origin: top left;
+.category-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.equipment-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.equipment-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  width: 320px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transition: 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+}
+
+.equipment-section:hover {
+  transform: scale(1.04);
+}
+
+.upgrade-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #34495e;
+  color: #ffffff;
+  transition: 0.3s;
+}
+
+select:hover {
+  background-color: #2c3e50;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, #ff6f61, #ff9068);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(to right, #ff4b3e, #ff735f);
+}
+
+.results {
+  margin-top: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  color: white;
 }
   </style>
 </head>
 <body>
-  <a href="index.html" id="home-link">
-    <img src="ana sayfa.jpg" alt="Ana Sayfa" id="home-icon">
-  </a>
-<div class="container">
-  <h2>Tılsım Yükseltme Hesaplayıcı</h2>
+  <h1>Şef Tılsımı Hesaplama</h1>
 
- <div class="section">
-            <h2>Şef Tılsımı</h2>
-        </div>
-        <div class="section">
-            <h2>Mızrakçı</h2>
-            <div class="entry-row">
-                <div class="entry-group">
-                    <label for="headcharmFrom1">Kafalık (Başlangıç 1)</label>
-                    <select id="headcharmFrom1"></select>
-                    <label for="headcharmTo1">Kafalık (Hedef 1)</label>
-                    <select id="headcharmTo1"></select>
-                    <div id="headcharmScore1" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="headcharmFrom2">Kafalık (Başlangıç 2)</label>
-                    <select id="headcharmFrom2"></select>
-                    <label for="headcharmTo2">Kafalık (Hedef 2)</label>
-                    <select id="headcharmTo2"></select>
-                    <div id="headcharmScore2" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="headcharmFrom3">Kafalık (Başlangıç 3)</label>
-                    <select id="headcharmFrom3"></select>
-                    <label for="headcharmTo3">Kafalık (Hedef 3)</label>
-                    <select id="headcharmTo3"></select>
-                    <div id="headcharmScore3" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="compasFrom1">Pusula (Başlangıç)</label>
-                    <select id="compasFrom1"></select>
-                    <label for="compasTo1">Pusula (Hedef)</label>
-                    <select id="compasTo1"></select>
-                    <div id="compascore1" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="compasFrom2">Pusula (Başlangıç)</label>
-                    <select id="compasFrom2"></select>
-                    <label for="compasTo2">Pusula (Hedef)</label>
-                    <select id="compasTo2"></select>
-                    <div id="compascore2" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="compasFrom3">Pusula (Başlangıç)</label>
-                    <select id="compasFrom3"></select>
-                    <label for="compasTo3">Pusula (Hedef)</label>
-                    <select id="compasTo3"></select>
-                    <div id="compascore3" class="score"></div>
-                </div>
+  <div class="category">
+    <div class="category-title">Mızrakçı</div>
+    <div class="equipment-container" id="mizrakci"></div>
+  </div>
+
+  <div class="category">
+    <div class="category-title">Piyade</div>
+    <div class="equipment-container" id="piyade"></div>
+  </div>
+
+  <div class="category">
+    <div class="category-title">Nişancı</div>
+    <div class="equipment-container" id="nisanci"></div>
+  </div>
+
+  <button onclick="calculateTotal()">Hesapla</button>
+  <div class="results" id="results"></div>
+
+  <script>
+    const levels = [
+      { guide: 0, plans: 0, book: 0 },
+      { guide: 5, plans: 5, book: 0 },
+      { guide: 40, plans: 15, book: 0 },
+      { guide: 60, plans: 40, book: 0 },
+      { guide: 80, plans: 100, book: 0 },
+      { guide: 100, plans: 200, book: 0 },
+      { guide: 120, plans: 300, book: 0 },
+      { guide: 140, plans: 400, book: 0 },
+      { guide: 200, plans: 400, book: 0 },
+      { guide: 300, plans: 400, book: 0 },
+      { guide: 420, plans: 420, book: 0 },
+      { guide: 560, plans: 420, book: 0 },
+      { guide: 580, plans: 450, book: 15 },
+      { guide: 580, plans: 450, book: 30 },
+      { guide: 600, plans: 500, book: 45 },
+      { guide: 600, plans: 500, book: 70 },
+      { guide: 650, plans: 550, book: 100 },
+    ];
+
+    const equipments = {
+      "Mızrakçı - Kask": { id: "kask", category: "mizrakci" },
+      "Mızrakçı - Pusula": { id: "pusula", category: "mizrakci" },
+      "Piyade - Ceket": { id: "ceket", category: "piyade" },
+      "Piyade - Pantolon": { id: "pantolon", category: "piyade" },
+      "Nişancı - Yüzük": { id: "yuzuk", category: "nisanci" },
+      "Nişancı - Baston": { id: "baston", category: "nisanci" },
+    };
+
+    function createLevelOptions() {
+      let opts = "";
+      for (let i = 0; i < levels.length; i++) {
+        opts += `<option value="${i}">Seviye ${i}</option>`;
+      }
+      return opts;
+    }
+
+    function createEquipmentFields() {
+      for (const [label, data] of Object.entries(equipments)) {
+        const section = document.createElement("div");
+        section.className = "equipment-section";
+        section.innerHTML = `<h2>${label}</h2>`;
+        for (let i = 1; i <= 3; i++) {
+          section.innerHTML += `
+            <div class="upgrade-group">
+              <label>Yükseltme ${i}:</label>
+              <select id="${data.id}_start${i}">${createLevelOptions()}</select>
+              →
+              <select id="${data.id}_end${i}">${createLevelOptions()}</select>
             </div>
-        </div>
-        <div class="section">
-            <h2>Piyade</h2>
-            <div class="entry-row">
-                <div class="entry-group">
-                    <label for="chestsFrom1">Göğüslük (Başlangıç)</label>
-                    <select id="chestsFrom1"></select>
-                    <label for="chestsTo1">Göğüslük (Hedef)</label>
-                    <select id="chestsTo1"></select>
-                    <div id="chestsScore1" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="chestsFrom2">Göğüslük (Başlangıç)</label>
-                    <select id="chestsFrom2"></select>
-                    <label for="chestsTo2">Göğüslük (Hedef)</label>
-                    <select id="chestsTo2"></select>
-                    <div id="chestsScore2" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="chestsFrom3">Göğüslük (Başlangıç)</label>
-                    <select id="chestsFrom3"></select>
-                    <label for="chestsTo3">Göğüslük (Hedef)</label>
-                    <select id="chestsTo3"></select>
-                    <div id="chestsScore3" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="pantFrom1">Pantolon (Başlangıç)</label>
-                    <select id="pantFrom1"></select>
-                    <label for="pantTo1">Pantolon (Hedef)</label>
-                    <select id="pantTo1"></select>
-                    <div id="pantScore1" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="pantFrom2">Pantolon (Başlangıç)</label>
-                    <select id="pantFrom2"></select>
-                    <label for="pantTo2">Pantolon (Hedef)</label>
-                    <select id="pantTo2"></select>
-                    <div id="pantScore2" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="pantFrom3">Pantolon (Başlangıç)</label>
-                    <select id="pantFrom3"></select>
-                    <label for="pantTo3">Pantolon (Hedef)</label>
-                    <select id="pantTo3"></select>
-                    <div id="pantScore3" class="score"></div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <h2>Nişancı</h2>
-            <div class="entry-row">
-                <div class="entry-group">
-                    <label for="ringsFrom1">Yüzük (Başlangıç)</label>
-                    <select id="ringsFrom1"></select>
-                    <label for="ringsTo1">Yüzük (Hedef)</label>
-                    <select id="ringsTo1"></select>
-                    <div id="ringsScore1" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="ringsFrom2">Yüzük (Başlangıç)</label>
-                    <select id="ringsFrom2"></select>
-                    <label for="ringsTo2">Yüzük (Hedef)</label>
-                    <select id="ringsTo2"></select>
-                    <div id="ringsScore2" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="ringsFrom3">Yüzük (Başlangıç)</label>
-                    <select id="ringsFrom3"></select>
-                    <label for="ringsTo3">Yüzük (Hedef)</label>
-                    <select id="ringsTo3"></select>
-                    <div id="ringsScore3" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="stafFrom1">Baston (Başlangıç)</label>
-                    <select id="stafFrom1"></select>
-                    <label for="stafTo1">Baston (Hedef)</label>
-                    <select id="stafTo1"></select>
-                    <div id="stafScore1" class="score"></div>
-                </div>
-                <div class="entry-group">
-                    <label for="stafFrom2">Baston (Başlangıç)</label>
-                    <select id="stafFrom2"></select>
-                    <label for="stafTo2">Baston (Hedef)</label>
-                    <select id="stafTo2"></select>
-                    <div id="stafScore2" class="score"></div>   
-                </div>
-                <div class="entry-group">
-                    <label for="stafFrom3">Baston (Başlangıç)</label>
-                    <select id="stafFrom3"></select>
-                    <label for="stafTo3">Baston (Hedef)</label>
-                    <select id="stafTo3"></select>
-                    <div id="stafScore3" class="score"></div>   
-                </div>
-            </div>
-        </div>
-    </div>
-  
-
-
-  <button onclick="hepsiHesapla()">HESAPLA</button>
-
-  <div id="summary" class="result-summary"></div>
-</div>
-
-<script>
-const levels = [
-  { code: 0, seviye: "level0",  guide: 0,  plans: 0, book: 0 },
-  { code: 1, seviye: "level1",  guide: 5,  plans: 5, book: 0 },
-  { code: 2, seviye: "level2",  guide: 40,  plans: 15, book: 0 },
-  { code: 3, seviye: "level3",  guide: 60, plans: 40, book: 0 },
-  { code: 4, seviye: "level4",  guide: 80,   plans: 100, book: 0 },
-  { code: 5, seviye: "level5",  guide: 100,  plans: 200, book: 0 },
-  { code: 6, seviye: "level6",  guide: 120,  plans: 300, book: 0 },
-  { code: 7, seviye: "level7",  guide: 140,  plans: 400, book: 0 },
-  { code: 8, seviye: "level8",  guide: 200,  plans: 400, book: 0 },
-  { code: 9, seviye: "level9",  guide: 300,  plans: 400, book: 0 },
-  { code: 10, seviye:"level10", guide: 420,  plans: 420, book: 0 },
-  { code: 11, seviye:"level11", guide: 560,  plans: 420, book: 0 },
-  { code: 12, seviye:"level12", guide: 580,  plans: 450, book: 15 },
-  { code: 13, seviye:"level13", guide: 580,  plans: 450, book: 30 },
-  { code: 14, seviye:"level14", guide: 600,  plans: 500, book: 45 },
-  { code: 15, seviye:"level15", guide: 600,  plans: 500, book: 70 },
-  { code: 16, seviye:"level16", guide: 650,  plans: 550, book: 100 },
-    ]
-
-// Donanım adı, başlangıç ve hedef select ID'si, sonuç alanı ID'si
-const equipments = [
-            { from: "headcharmFrom1", to: "headcharmTo1" },
-            { from: "headcharmFrom2", to: "headcharmTo2" },
-            { from: "headcharmFrom3", to: "headcharmTo3" },
-            { from: "compasFrom1", to: "compasTo1" },
-            { from: "compasFrom2", to: "compasTo2" },
-            { from: "compasFrom3", to: "compasTo3" },
-            { from: "chestsFrom1", to: "chestsTo1" },
-            { from: "chestsFrom2", to: "chestsTo2" },
-            { from: "chestsFrom3", to: "chestsTo3" },
-            { from: "pantFrom1", to: "pantTo1" },
-            { from: "pantFrom2", to: "pantTo2" },
-            { from: "pantFrom3", to: "pantTo3" },
-            { from: "ringsFrom1", to: "ringsTo1" },
-            { from: "ringsFrom2", to: "ringsTo2" },
-            { from: "ringsFrom3", to: "ringsTo3" },
-            { from: "stafFrom1", to: "stafTo1" },
-            { from: "stafFrom2", to: "stafTo2" },
-            { from: "stafFrom3", to: "stafTo3" }
-        ];
-
-// Seçenekleri doldur
-donanimlar.forEach(d => {
-  const fromSel = document.getElementById(d.from);
-  const toSel = document.getElementById(d.to);
-  levels.forEach(level => {
-    const option = document.createElement('option');
-    option.value = level.code;
-    option.textContent = level.seviye;
-    fromSel.appendChild(option);
-    toSel.appendChild(option.cloneNode(true));
-  });
-  toSel.selectedIndex = levels.length - 17;
-});
-
-function hepsiHesapla() {
-    let  toplamguide = 0, toplamPlans = 0, toplambook = 0;
-
-    
-
-    donanimlar.forEach(d => {
-        const from = parseInt(document.getElementById(d.from).value);
-        const to = parseInt(document.getElementById(d.to).value);
-
-        const resultEl = document.getElementById(d.result);
-        if (from >= to) {
-            resultEl.innerHTML = "<b>Hedef seviye, başlangıçtan yüksek olmalı.</b>";
-            return;
+          `;
         }
+        document.getElementById(data.category).appendChild(section);
+      }
+    }
 
-        const aralik = levels.filter(l => l.code > from && l.code <= to);
-        const toplam = aralik.reduce((acc, l) => {
-            acc.guide += l.guide;  // Sabit kalıyor
-            acc.plans += l.plans;  // Sabit kalıyor
-            acc.book += l.book;  // Sabit kalıyor
-            return acc;
-        }, {  guide: 0,  plans: 0, book: 0 });
+    function calculateTotal() {
+      let total = { guide: 0, plans: 0, book: 0 };
+      for (const data of Object.values(equipments)) {
+        for (let i = 1; i <= 3; i++) {
+          const start = parseInt(document.getElementById(`${data.id}_start${i}`).value);
+          const end = parseInt(document.getElementById(`${data.id}_end${i}`).value);
+          for (let l = start + 1; l <= end; l++) {
+            total.guide += levels[l].guide;
+            total.plans += levels[l].plans;
+            total.book += levels[l].book;
+          }
+        }
+      }
+      document.getElementById("results").innerHTML = `
+        <h2>Toplam Malzeme İhtiyacı</h2>
+        <p><strong>Guide:</strong> ${total.guide}</p>
+        <p><strong>Plans:</strong> ${total.plans}</p>
+        <p><strong>Book:</strong> ${total.book}</p>
+      `;
+    }
 
-        
-        toplamguide += toplam.guide;
-        toplamPlans += toplam.plans;
-        toplambook += toplam.book;
-
-        resultEl.innerHTML = `
-            <div><strong>Tılsım Kılavuzu:</strong> ${toplam.guide}</div>
-            <div><strong>Tılsım Tasarımı:</strong> ${toplam.plans}</div>
-            <div><strong>Kitap:</strong> ${toplam.book}</div>
-        `;
-    });
-
-    document.getElementById('summary').innerHTML = `
-        <h3>Genel Toplam</h3>
-        <div><strong>Tılsım Kılavuzu:</strong> ${toplamguide}</div>
-        <div><strong>Tılsım Tasarımı:</strong> ${toplamPlans}</div>
-        <div><strong>Kitap:</strong> ${toplambook}</div>
-    `;
-}
-
-
-</script>
+    createEquipmentFields();
+  </script>
 </body>
 </html>
