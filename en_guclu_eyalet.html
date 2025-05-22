@@ -16,112 +16,241 @@
   height: 60px;
   cursor: pointer;
 }
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1a1a1a;
-            color: white;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            font-size: 32px;
-            color: #4CAF50;
-        }
-        .container {
-            max-width: 90%;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .input-group, .entry-group {
-            width: 45%;
-            margin: 10px 0;
-            background: #222;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .input-group:hover, .entry-group:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
-        }
-        .section {
-            width: 100%;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #333, #444);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-        .section h2 {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 20px;
-            color: #FFD700; /* Altın rengi */
-        }
-        .entry-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-        label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-            color: #ffffffb3; /* Hafif transparan beyaz */
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            background-color: #333;
-            color: white;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-            transition: box-shadow 0.2s, border 0.2s;
-        }
-        input:focus {
-            border-color: #4CAF50;
-            box-shadow: 0 0 8px #4CAF50;
-            outline: none;
-        }
-        button {
-            width: 100%;
-            padding: 15px;
-            font-size: 18px;
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
-        }
-        button:hover {
-            background: linear-gradient(135deg, #45a049, #388e3c);
-            transform: scale(1.05);
-        }
-        .score {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #FFD700; /* Altın rengi */
-        }
-        .result {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #4CAF50;
-        }
+        /* Ana renk teması: koyu zemin + canlı vurgu renkleri */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #00e676;
+    margin-bottom: 30px;
+}
+
+#home-link {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+}
+#home-icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+#home-icon:hover {
+    transform: scale(1.1);
+}
+select {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #00e676;
+    border-radius: 6px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.input-group {
+    background: #1f1f1f;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+.input-group:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 16px rgba(0, 0, 0, 0.6);
+}
+
+
+label {
+    font-weight: bold;
+    color: #b2ff59;
+    display: block;
+    margin-bottom: 6px;
+}
+
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background-color: #222;
+    color: #fff;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #00e676;
+    box-shadow: 0 0 8px rgba(0, 230, 118, 0.7);
+    outline: none;
+}
+
+.score {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #ffeb3b;
+    font-weight: bold;
+}
+
+.result {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #00e676;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+.section {
+    background-color: #1c1c1c;
+    color: #00e676;
+    padding: 8px; /* Daha kompakt hale getirildi */
+    margin: 30px 0; /* Bölümler arası daha fazla boşluk */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    text-align: center;
+    font-size: 18px; /* Başlık boyutu küçültüldü */
+}
+
+/* İçerik alanları arasına daha fazla boşluk ekliyoruz */
+.entry-row {
+    display: flex;
+    flex-wrap: wrap; /* Küçük ekranlarda aşağı kaymasını sağlıyoruz */
+    justify-content: space-between; /* Daha dengeli yerleşim */
+    gap: 12px; /* Elemanların arasında boşluk ekliyoruz */
+}
+.baslik-merkez {
+  text-align: center;
+}
+h2 {
+    text-align: center;
+    font-size: 36px;
+    color: #00e676;
+    margin-bottom: 30px;
+}
+
+
+.entry-group {
+    background: #252525;
+    padding: 16px;
+    
+    border-radius: 10px;
+    width: 100%; /* Elemanları tam genişlikte yapıyoruz */
+    margin-bottom: 12px; /* Aralarına boşluk ekliyoruz */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+button {
+    display: block;
+    background: linear-gradient(45deg, #00e676, #00b248); /* Yeşil renk geçişi */
+    color: white;
+    margin: 20px auto ;
+    border: none;
+    padding: 14px 24px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+.result {
+    display: flex;
+    justify-content: center; /* Yatayda ortalama */
+    align-items: center; /* Dikeyde ortalama */
+    text-align: center;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #333;
+}
+
+
+button:hover {
+    background: linear-gradient(45deg, #00c853, #008c44);
+    transform: scale(1.08);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}   
+header {
+    background: linear-gradient(90deg, var(--highlight-color), var(--accent-color));
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.navbar-title a {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-title a:hover {
+    color: var(--bg-color);
+}
+
+.nav-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-icons a img {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-icons a img:hover {
+    transform: scale(1.2);
+    opacity: 0.9;
+}
+
+
+
+
     </style>
 </head>
 <body>
-    <a href="index.html" id="home-link">
-        <img src="ana sayfa.jpg" alt="Ana Sayfa" id="home-icon">
-      </a>
+    <header>
+  <div class="navbar-title">
+    <a href="index.html" style="text-decoration: none; color: white;">Ana Sayfa</a>
+  </div>
+  <div class="nav-icons">
+    <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
+    <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+    <a href="https://discord.gg/MT5gnFcq" target="_blank"><img src="discord.jpg" alt="Discord"></a>
+    <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
+  </div>
+</header>
     <h1>En güçlü Eyalet (SvS) - Puan Hesaplama</h1>
     <div class="container">
         <!-- Önceki Veri Girişleri -->
@@ -279,9 +408,12 @@
 
         </div>
         <!-- Yeni Şef Donanımı Girişleri -->
-        <div class="section">
-            <h2>Şef Donanımı</h2>
-        </div>
+        
+            <h2 class="baslik-merkez">Şef Donanımı<br></h2>
+
+        
+        <h1></h1>
+            <br>        
         <div class="section">
             <h2>Mızrakçı</h2>
             <div class="entry-row">
@@ -490,38 +622,38 @@
             <h2>Petler</h2>
         </div>
         <div class="section">
-            <h2>N-Normal(normal) Pet & R-Ender(rare) Pet</h2>
+            <h2>İlk ve İkinci Petler</h2>
             <div class="entry-row">
                 <div class="entry-group">
-                    <label for="N-Normal">N-Normal(normal) (Başlangıç)</label>
+                    <label for="N-Normal">İlk Pet (Başlangıç)</label>
                     <select id="N-Normal"></select>
-                    <label for="N-Normall">N-Normal(normal) (Hedef)</label>
+                    <label for="N-Normall">İlk Pet (Hedef)</label>
                     <select id="N-Normall"></select>
                     <div id="N-Normal(normal)" class="score"></div>
                 </div>
                 <div class="entry-group">
-                    <label for="R-Ender">R-Ender(rare) (Başlangıç)</label>
+                    <label for="R-Ender">İkinci Pet (Başlangıç)</label>
                     <select id="R-Ender"></select>
-                    <label for="R-Enderr">R-Ender(rare) (Hedef)</label>
+                    <label for="R-Enderr">İkinci Pet (Hedef)</label>
                     <select id="R-Enderr"></select>
                     <div id="R-Ender(rare)" class="score"></div>
                 </div>
             </div>
         </div>
         <div class="section">
-            <h2>SR-Epik(Epic) Pet & SSR-Mitik(mystic) Pet</h2>
+            <h2>Üçüncü ve Dördüncü Petler</h2>
             <div class="entry-row">
                 <div class="entry-group">
-                    <label for="SR-Epik">SR-Epik(Epic) (Başlangıç)</label>
+                    <label for="SR-Epik">Üçüncü Pet (Başlangıç)</label>
                     <select id="SR-Epik"></select>
-                    <label for="SR-Epikk">SR-Epik(Epic) (Hedef)</label>
+                    <label for="SR-Epikk">Üçüncü Pet (Hedef)</label>
                     <select id="SR-Epikk"></select>
                     <div id="SR-Epik(Epic)" class="score"></div>
                 </div>
                 <div class="entry-group">
-                    <label for="SSR-Mitik">SSR-Mitik(mystic) (Başlangıç)</label>
+                    <label for="SSR-Mitik">Dördüncü Pet (Başlangıç)</label>
                     <select id="SSR-Mitik"></select>
-                    <label for="SSR-Mitikk">SSR-Mitik(mystic) (Hedef)</label>
+                    <label for="SSR-Mitikk">Dördüncü Pet (Hedef)</label>
                     <select id="SSR-Mitikk"></select>
                     <div id="SSR-Mitik(mystic)" class="score"></div>
                 </div>
