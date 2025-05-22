@@ -4,166 +4,179 @@
   <meta charset="UTF-8">
   <title>Donanım Yükseltme Hesaplayıcı</title>
   <style>
-    :root {
-  --main-bg: #0f172a;
-  --container-bg: #ffffff;
-  --primary-color: #4f46e5;
-  --primary-hover: #4338ca;
-  --box-bg: #f8fafc;
-  --box-border: #e2e8f0;
-  --font: 'Segoe UI', sans-serif;
-  --text-color: #1e293b;
+        :root {
+            --bg-color: #1e1e2f;
+            --card-color: #2a2a3d;
+            --text-color: #e0f7fa;
+            --highlight-color: #21cbf3;
+            --accent-color: #FFD700;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: var(--text-color);
+            margin: 0;
+            padding-top: 70px; /* Header için boşluk bıraktım */
+        }
+
+        header {
+    background: linear-gradient(90deg, #2196f3, #21cbf3);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: flex-start; /* Menüyü sola hizaladım */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.navbar-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    margin-left: 10px; /* Yazıyı sola kaydırdım */
 }
 
-body {
-  font-family: var(--font);
-  background-color: var(--main-bg);
-  color: var(--text-color);
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  transform: scale(0.70);
-  transform-origin: top left;
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    margin-left: 1100px; /* Görselleri biraz sola çekerek tam görünür hale getirdim */
 }
 
-#home-link {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 999;
+.nav-icons a img {
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-#home-icon {
-  width: 70px;
-  height: 70px;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+.nav-icons a img:hover {
+    transform: scale(1.15);
+    opacity: 0.85;
 }
 
-.container {
-  background: var(--container-bg);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  max-width: 1200px;
-  width: 95%;
-  margin: auto;
-  transition: all 0.3s ease;
+
+        h2 {
+    text-align: center;
+    font-size: 32px;
+    color: var(--highlight-color);
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+    margin-top: 20px;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 32px;
-  color: var(--primary-color);
-  letter-spacing: 1px;
+
+        .donanim-group {
+            margin-bottom: 25px;
+            background: var(--card-color);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .donanim-group h3 {
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .donanim {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .donanim div {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.donanim-group {
-  margin-bottom: 40px;
-}
 
-.donanim-group h3 {
-  margin-bottom: 20px;
-  font-size: 20px;
-  border-left: 5px solid var(--primary-color);
-  padding-left: 10px;
-}
+        .donanim div:hover {
+            transform: scale(1.04);
+        }
 
-.donanim {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
 
-.donanim > div {
-  flex: 1;
-  min-width: 280px;
-  background-color: var(--box-bg);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
-}
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #34495e;
+            color: white;
+            transition: 0.3s;
+        }
 
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  font-size: 15px;
-}
+        select:hover {
+            background-color: #2c3e50;
+        }
 
-select {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid var(--box-border);
-  margin-bottom: 10px;
-  background: white;
-  transition: border-color 0.2s;
-}
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ff6f61, #ff9068);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-select:focus {
-  border-color: var(--primary-color);
-  outline: none;
-}
+        button:hover {
+            background: linear-gradient(to right, #ff4b3e, #ff735f);
+        }
 
-.result-box {
-  padding: 12px;
-  background: #eef2ff;
-  border: 1px solid #c7d2fe;
-  border-radius: 8px;
-  min-height: 40px;
-  font-weight: bold;
-  text-align: center;
-  color: #1e3a8a;
-}
+        .result-summary {
+            text-align: center;
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+        }
 
-button {
-  display: block;
-  width: 100%;
-  padding: 16px;
-  font-size: 18px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-top: 30px;
-  transition: background-color 0.3s, transform 0.2s;
-}
+        .result-box {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--accent-color);
+        }
+    </style>
 
-button:hover {
-  background-color: var(--primary-hover);
-  transform: scale(1.02);
-}
-
-.result-summary {
-  margin-top: 30px;
-  padding: 20px;
-  background: #e0f2fe;
-  border: 1px solid #bae6fd;
-  border-radius: 10px;
-  font-weight: 600;
-  color: #0c4a6e;
-}
-  </style>
 </head>
-<body>
-  <a href="index.html" id="home-link">
-    <img src="ana sayfa.jpg" alt="Ana Sayfa" id="home-icon">
-  </a>
+<header>
+    <div class="navbar-title">
+        <a href="index.html" style="text-decoration: none; color: white;">Ana Sayfa</a>
+    </div>
+    <div class="nav-icons">
+        <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
+        <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+        <a href="https://discord.gg/MT5gnFcq" target="_blank"><img src="discord.jpg" alt="Discord"></a>
+        <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
+    </div>
+</header>
+
+
 
   <div class="container">
     <h2>Donanım Yükseltme Hesaplayıcı</h2>
