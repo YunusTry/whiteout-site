@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Geliştirme Hesaplama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #1e1e2f;
+            --card-color: #2a2a3d;
+            --text-color: #e0f7fa;
+            --highlight-color: #21cbf3;
+            --accent-color: #FFD700;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: var(--text-color);
+            margin: 0;
+            padding-top: 70px;
+        }
+
+        header {
+    background: linear-gradient(90deg, #2196f3, #21cbf3);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: flex-start; /* Menüyü sola hizaladım */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    margin-left: 10px; /* Yazıyı sola kaydırdım */
+}
+
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    margin-left: 1100px; /* Görselleri biraz sola çekerek tam görünür hale getirdim */
+}
+
+.nav-icons a img {
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-icons a img:hover {
+    transform: scale(1.15);
+    opacity: 0.85;
+}
+
+        h2 {
+            text-align: center;
+            font-size: 32px;
+            color: var(--highlight-color);
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        .pet-group {
+            margin-bottom: 25px;
+            background: var(--card-color);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .pet-group h3 {
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .pet-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .pet-container div {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            width: 250px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .pet-container div:hover {
+            transform: scale(1.04);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #34495e;
+            color: white;
+            transition: 0.3s;
+        }
+
+        select:hover {
+            background-color: #2c3e50;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(to right, #ff6f61, #ff9068);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ff4b3e, #ff735f);
+        }
+
+        .result-summary {
+            text-align: center;
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 22px;
+            border-radius: 14px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        .result-box {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+<header>
+        <div class="navbar-title">
+            <a href="index.html">Ana Sayfa</a>
+        </div>
+        <div class="nav-icons">
+            <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
+            <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+            <a href="https://discord.gg/MT5gnFcq" target="_blank"><img src="discord.jpg" alt="Discord"></a>
+            <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
+        </div>
+    </header>
+
+<div class="container">
+    <h2>Pet Geliştirme Hesaplama</h2>
+
+    <div class="pet-group">
+    <h3>İlk ve İkinci Petler</h3>
+    <div class="pet-container">
+        <div>
+            <h4>1. Pet (SSR)</h4>
+            <label for="firstPetStart">Başlangıç</label>
+            <select id="firstPetStart"></select>
+            <label for="firstPetTarget">Hedef</label>
+            <select id="firstPetTarget"></select>
+            <div id="firstPetResult" class="result-box"></div>
+        </div>
+        <div>
+            <h4>2. Pet (SR)</h4>
+            <label for="secondPetStart">Başlangıç</label>
+            <select id="secondPetStart"></select>
+            <label for="secondPetTarget">Hedef</label>
+            <select id="secondPetTarget"></select>
+            <div id="secondPetResult" class="result-box"></div>
+        </div>
+    </div>
+</div>
+
+<div class="pet-group">
+    <h3>Üçüncü ve Dördüncü Petler</h3>
+    <div class="pet-container">
+        <div>
+            <h4>3. Pet (R)</h4>
+            <label for="thirdPetStart">Başlangıç</label>
+            <select id="thirdPetStart"></select>
+            <label for="thirdPetTarget">Hedef</label>
+            <select id="thirdPetTarget"></select>
+            <div id="thirdPetResult" class="result-box"></div>
+        </div>
+        <div>
+            <h4>4. Pet (A)</h4>
+            <label for="fourthPetStart">Başlangıç</label>
+            <select id="fourthPetStart"></select>
+            <label for="fourthPetTarget">Hedef</label>
+            <select id="fourthPetTarget"></select>
+            <div id="fourthPetResult" class="result-box"></div>
+        </div>
+    </div>
+</div>
+
+<div class="pet-group">
+    <h3>Beşinci Pet</h3>
+    <div class="pet-container">
+        <div>
+            <h4>5. Pet (B)</h4>
+            <label for="fifthPetStart">Başlangıç</label>
+            <select id="fifthPetStart"></select>
+            <label for="fifthPetTarget">Hedef</label>
+            <select id="fifthPetTarget"></select>
+            <div id="fifthPetResult" class="result-box"></div>
+        </div>
+    </div>
+</div>
+
+
+    <button onclick="hesaplaPetler()">HESAPLA</button>
+    <div id="summary" class="result-summary"></div>
+</div>
+
+</body>
+</html>
+<script>
+  const petGereksinimleri = {
+    "B": {
+        "mama": {
+            "1-10": 1715,
+            "11-20": 3180,
+            "21-30": 5010,
+            "31-40": 7660,
+            "41-50": 11310
+        },
+        "malzemeler": {
+            "10": { "kılavuz": 15 },
+            "20": { "kılavuz": 30 },
+            "30": { "kılavuz": 45, "iksir": 10 },
+            "40": { "kılavuz": 60, "iksir": 20 },
+            "50": { "kılavuz": 90, "iksir": 30, "serum": 10 }
+        }
+    },
+    "A": {
+        "mama": {
+            "1-10": 2530,
+            "11-20": 5360,
+            "21-30": 9020,
+            "31-40": 14320,
+            "41-50": 21620,
+            "51-60": 30920
+        },
+        "malzemeler": {
+            "10": { "kılavuz": 20 },
+            "20": { "kılavuz": 40 },
+            "30": { "kılavuz": 60, "iksir": 10 },
+            "40": { "kılavuz": 90, "iksir": 20 },
+            "50": { "kılavuz": 130, "iksir": 30, "serum": 10 },
+            "60": { "kılavuz": 175, "iksir": 50, "serum": 20 }
+        }
+    },
+    "R": {
+        "mama": {
+            "1-10": 3795,
+            "11-20": 8040,
+            "21-30": 13530,
+            "31-40": 21480,
+            "41-50": 32430,
+            "51-60": 46080,
+            "61-70": 63030
+        },
+        "malzemeler": {
+            "10": { "kılavuz": 25 },
+            "20": { "kılavuz": 50 },
+            "30": { "kılavuz": 75, "iksir": 10 },
+            "40": { "kılavuz": 100, "iksir": 20 },
+            "50": { "kılavuz": 155, "iksir": 30, "serum": 10 },
+            "60": { "kılavuz": 200, "iksir": 50, "serum": 20 },
+            "70": { "kılavuz": 255, "iksir": 80, "serum": 40 },
+            
+    },
+    "SR": {
+        "mama": {
+            "1-10": 5060,
+            "11-20": 10720,
+            "21-30": 18040,
+            "31-40": 28640,
+            "41-50": 43240,
+            "51-60": 61840,
+            "61-70": 84400,
+            "71-80": 108400,
+            "81-90": 135600
+        },
+        "malzemeler": {
+            "10": { "kılavuz": 30 },
+            "20": { "kılavuz": 60 },
+            "30": { "kılavuz": 95, "iksir": 10 },
+            "40": { "kılavuz": 125, "iksir": 20 },
+            "50": { "kılavuz": 190, "iksir": 30, "serum": 10 },
+            "60": { "kılavuz": 250, "iksir": 50, "serum": 20 },
+            "70": { "kılavuz": 310, "iksir": 80, "serum": 40 },
+            "80": { "kılavuz": 380, "iksir": 100, "serum": 60 }
+        }
+    },
+    "SSR": {
+        "mama": {
+            "1-10": 6325,
+            "11-20": 13400,
+            "21-30": 22550,
+            "31-40": 35800,
+            "41-50": 54050,
+            "51-60": 77300,
+            "61-70": 105500,
+            "71-80": 135600,
+            "81-90": 172000,
+            "91-100": 212100
+        },
+        "malzemeler": {
+            "10": { "kılavuz": 35 },
+            "20": { "kılavuz": 70 },
+            "30": { "kılavuz": 110, "iksir": 15 },
+            "40": { "kılavuz": 145, "iksir": 35 },
+            "50": { "kılavuz": 220, "iksir": 50, "serum": 10 },
+            "60": { "kılavuz": 290, "iksir": 65, "serum": 20 },
+            "70": { "kılavuz": 365, "iksir": 85, "serum": 40 },
+            "80": { "kılavuz": 440, "iksir": 100, "serum": 60 },
+            "90": { "kılavuz": 555, "iksir": 115, "serum": 80 },
+            "100": { "kılavuz": 730, "iksir": 135, "serum": 100 }
+        }
+    }
+}
+  }
+const petSeviyeAraliklari = {
+    "SSR": ["0","1-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-100"],
+    "SR": ["0","1-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80"],
+    "R": ["0","1-10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70"],
+    "A": ["0","1-10", "11-20", "21-30", "31-40", "41-50", "51-60"],
+    "B": ["0","1-10", "11-20", "21-30", "31-40", "41-50"]
+};
+
+function selecteSecenekEkle(selectID, seviyeListesi) {
+    const selectElement = document.getElementById(selectID);
+    selectElement.innerHTML = ""; // Temizle
+    seviyeListesi.forEach(seviye => {
+        const option = document.createElement("option");
+        option.value = seviye;
+        option.textContent = seviye;
+        selectElement.appendChild(option);
+    });
+}
+
+function selectKutulariniDoldur() {
+    // 1. Pet (SSR)
+    selecteSecenekEkle("firstPetStart", petSeviyeAraliklari["SSR"]);
+    selecteSecenekEkle("firstPetTarget", petSeviyeAraliklari["SSR"]);
+
+    // 2. Pet (SR)
+    selecteSecenekEkle("secondPetStart", petSeviyeAraliklari["SR"]);
+    selecteSecenekEkle("secondPetTarget", petSeviyeAraliklari["SR"]);
+
+    // 3. Pet (R)
+    selecteSecenekEkle("thirdPetStart", petSeviyeAraliklari["R"]);
+    selecteSecenekEkle("thirdPetTarget", petSeviyeAraliklari["R"]);
+
+    // 4. Pet (A)
+    selecteSecenekEkle("fourthPetStart", petSeviyeAraliklari["A"]);
+    selecteSecenekEkle("fourthPetTarget", petSeviyeAraliklari["A"]);
+
+    // 5. Pet (B)
+    selecteSecenekEkle("fifthPetStart", petSeviyeAraliklari["B"]);
+    selecteSecenekEkle("fifthPetTarget", petSeviyeAraliklari["B"]);
+}
+
+// Sayfa yüklenince başlat
+window.onload = selectKutulariniDoldur;
+const petTipleri = ["SSR", "SR", "R", "A", "B"];
+const petIdleri = [
+    { start: "firstPetStart", target: "firstPetTarget", tip: "SSR", result: "firstPetResult" },
+    { start: "secondPetStart", target: "secondPetTarget", tip: "SR", result: "secondPetResult" },
+    { start: "thirdPetStart", target: "thirdPetTarget", tip: "R", result: "thirdPetResult" },
+    { start: "fourthPetStart", target: "fourthPetTarget", tip: "A", result: "fourthPetResult" },
+    { start: "fifthPetStart", target: "fifthPetTarget", tip: "B", result: "fifthPetResult" }
+];
+
+
+function hesaplaPetler() {
+    const toplam = {
+        mama: 0,
+        kılavuz: 0,
+        iksir: 0,
+        serum: 0
+    };
+
+    for (const pet of petIdleri) {
+        const tip = pet.tip;
+        const start = parseInt(document.getElementById(pet.start).value);
+        const target = parseInt(document.getElementById(pet.target).value);
+
+        if (isNaN(start) || isNaN(target) || target <= start) {
+            document.getElementById(pet.result).innerText = "Geçersiz seviyeler!";
+            continue;
+        }
+
+        const petVeri = petGereksinimleri[tip];
+        let mamaToplam = 0;
+        const malzemeToplam = { kılavuz: 0, iksir: 0, serum: 0 };
+
+        // Mama hesabı (örnek: 11-20 → 10 seviye var, her biri mama[11-20]/10)
+        for (let level = start + 1; level <= target; level++) {
+            const bolum = Math.ceil(level / 10) * 10;
+            const alt = Math.floor((level - 1) / 10) * 10 + 1;
+            const aralik = `${alt}-${bolum}`;
+
+            if (petVeri.mama[aralik]) {
+                mamaToplam += petVeri.mama[aralik] / 10;
+            }
+        }
+
+        // Malzeme hesabı (sadece 10, 20, 30... gibi hedef seviye geçişlerinde toplanır)
+        for (let malzemeSeviyeStr in petVeri.malzemeler) {
+            const malzemeSeviye = parseInt(malzemeSeviyeStr);
+            if (malzemeSeviye > start && malzemeSeviye <= target) {
+                const m = petVeri.malzemeler[malzemeSeviye];
+                malzemeToplam.kılavuz += m.kılavuz || 0;
+                malzemeToplam.iksir += m.iksir || 0;
+                malzemeToplam.serum += m.serum || 0;
+            }
+        }
+
+        // Ekrana yaz
+        document.getElementById(pet.result).innerText =
+            `Mama: ${Math.round(mamaToplam).toLocaleString()} | Kılavuz: ${malzemeToplam.kılavuz}, İksir: ${malzemeToplam.iksir}, Serum: ${malzemeToplam.serum}`;
+
+        // Toplamları güncelle
+        toplam.mama += mamaToplam;
+        toplam.kılavuz += malzemeToplam.kılavuz;
+        toplam.iksir += malzemeToplam.iksir;
+        toplam.serum += malzemeToplam.serum;
+    }
+
+    document.getElementById("summary").innerHTML = `
+        <h3>Toplam Gerekli Kaynak</h3>
+        <p><strong>Mama:</strong> ${Math.round(toplam.mama).toLocaleString()}</p>
+        <p><strong>Kılavuz:</strong> ${toplam.kılavuz}</p>
+        <p><strong>İksir:</strong> ${toplam.iksir}</p>
+        <p><strong>Serum:</strong> ${toplam.serum}</p>
+    `;
+
+}
+
+
+</script>
