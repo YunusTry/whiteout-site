@@ -137,6 +137,11 @@
             <div id="rareHeroScore" class="score"></div>
         </div>
         <div class="input-group">
+            <label for="mitril">Mitril</label>
+            <input type="number" id="mitril" placeholder="Değer girin">
+            <div id="mitrilScore" class="score"></div>
+        </div>
+        <div class="input-group">
             <label for="valueInput">Eğitilecek Asker Sayısı</label>
             <input type="number" id="valueInput">
         </div>
@@ -392,10 +397,12 @@
     // 3. Diğer puanlar
     const epicHero = (parseFloat(document.getElementById('epicHero').value) || 0) * 6000;
     const rareHero = (parseFloat(document.getElementById('rareHero').value) || 0) * 12000;
+    const mitril = (parseFloat(document.getElementById('rareHero').value) || 0) * 216000;
 
     // 4. Alt metinleri güncelle
     document.getElementById('epicHeroScore').innerText = `Puan: ${epicHero.toLocaleString()}`;
     document.getElementById('rareHeroScore').innerText = `Puan: ${rareHero.toLocaleString()}`;
+    document.getElementById('mitrilScore').innerText = `Puan: ${mitril.toLocaleString()}`;
 
     // 5. Toplamı birleştir
     const totalScore = equipmentScore + epicHero + rareHero + extraScore;
