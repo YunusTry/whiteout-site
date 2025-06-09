@@ -483,7 +483,7 @@ button:hover {
     document.getElementById('mitrilScore').innerText = `Puan: ${mitril.toLocaleString()}`;
 
     // 5. Toplamı birleştir
-    const totalScore = equipmentScore + epicHero + rareHero + extraScore;
+    const totalScore = equipmentScore + epicHero + mitril + rareHero + extraScore;
 
     // 6. Sonucu ekrana yaz
     document.getElementById('totalScore').innerText = `Toplam Puan: ${totalScore.toLocaleString()}`;
