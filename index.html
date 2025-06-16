@@ -17,18 +17,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Whiteout Survival Etkinlikleri</title>
     <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', sans-serif;
             background-color: #1e1e2f;
             color: #e0f7fa;
             text-align: center;
         }
-         .no-click {
-          pointer-events: none;
-          cursor: default;
-        }
-                
+        
 
         header {
             background: linear-gradient(90deg, #2196f3, #21cbf3);
@@ -66,6 +62,32 @@
             transform: scale(1.15);
             opacity: 0.85;
         }
+        .header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+#language-selector {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.language-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    margin-left: 20px;
+}
 
         .container {
             display: flex;
@@ -85,9 +107,9 @@
         }
 
         .card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
         }
 
         .card:hover {
@@ -120,33 +142,24 @@
                 width: 100%;
             }
         }
-        #language-selector {
-            padding: 6px 10px;
-            border-radius: 6px;
-            border: none;
-            background-color: #f0f0f0;
-            font-weight: bold;
-        }
-        .nav-icons, #language-selector {
-                justify-content: center;
-                width: 100%;
-                margin-top: 10px;
-            }
     </style>
 </head>
 <body>
 <header>
-    <div class="navbar-title">Whiteout Survival Etkinlikleri</div>
+  <div class="navbar-title">Whiteout Survival Etkinlikleri</div>
+  
+  <div class="header-right">
     <div class="nav-icons">
-        <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
-        <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
-        <a href="https://discord.gg/MT5gnFcq" target="_blank"><img src="discord.jpg" alt="Discord"></a>
-        <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
+      <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
+      <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+      <a href="https://discord.gg/MT5gnFcq" target="_blank"><img src="discord.jpg" alt="Discord"></a>
+      <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
     </div>
     <select id="language-selector">
-        <option value="tr">🇹🇷 Türkçe</option>
-        <option value="en">🇺🇸 English</option>
+      <option value="tr">🇹🇷 Türkçe</option>
+      <option value="en">🇺🇸 English</option>
     </select>
+  </div>
 </header>
 
 <div class="container">
