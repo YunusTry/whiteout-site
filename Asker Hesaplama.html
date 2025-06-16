@@ -60,6 +60,32 @@
       transform: scale(1.15);
       opacity: 0.85;
     }
+    .header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+#language-selector {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.language-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    margin-left: 20px;
+}
 
     .container {
       max-width: 600px;
@@ -135,14 +161,19 @@
     }
   </style>
 <header>
-  <div class="navbar-title">
-    <a href="index.html" style="text-decoration: none; color: white;">Ana Sayfa</a>
-  </div>
-  <div class="nav-icons">
-    <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
-    <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
-    <a href="https://discord.gg/MT5gnFcq" target="_blank"><img src="discord.jpg" alt="Discord"></a>
-    <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
+  <div class="navbar-title">Whiteout Survival Etkinlikleri</div>
+  
+  <div class="header-right">
+    <div class="nav-icons">
+      <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
+      <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+      <a href="https://discord.gg/MT5gnFcq" target="_blank"><img src="discord.jpg" alt="Discord"></a>
+      <a href="https://www.youtube.com/@BlackTED" target="_blank"><img src="black.jpg" alt="YouTube"></a>
+    </div>
+    <select id="language-selector">
+      <option value="tr">🇹🇷 Türkçe</option>
+      <option value="en">🇺🇸 English</option>
+    </select>
   </div>
 </header>
   <div class="container">
@@ -293,6 +324,68 @@
       document.getElementById("totalKomur").innerText = totalKomur.toLocaleString("tr-TR");
       document.getElementById("totalDemir").innerText = totalDemir.toLocaleString("tr-TR");
     }
+    const translations = {
+  tr: {
+    title: "Ana Sayfa",
+    calcTitle: "Hesaplama Aracı",
+    troopLabel: "Asker Seviyesi Seçin (T1-T10)",
+    timeLabel: "1 asker için eğitim süresi (saniye)",
+    piyadeLabel: "Piyade için hızlandırma süresi (saat)",
+    mizrakciLabel: "Mızrakçı için hızlandırma süresi (saat)",
+    nisanciLabel: "Nişancı için hızlandırma süresi (saat)",
+    button: "Hesapla",
+    countTitle: "Asker Sayıları",
+    totalTitle: "Toplam Gereksinim",
+    labels: ["Piyade", "Mızrakçı", "Nişancı", "Et", "Odun", "Kömür", "Demir"]
+  },
+  en: {
+    title: "Home",
+    calcTitle: "Training Calculator",
+    troopLabel: "Select Troop Level (T1-T10)",
+    timeLabel: "Training Time for 1 Troop (seconds)",
+    piyadeLabel: "Infantry Speed-up Time (hours)",
+    mizrakciLabel: "Lancer Speed-up Time (hours)",
+    nisanciLabel: "Marksman Speed-up Time (hours)",
+    button: "Calculate",
+    countTitle: "Troop Counts",
+    totalTitle: "Total Requirement",
+    labels: ["Infantry", "Lancer", "Marksman", "Meat", "Wood", "Coal", "Iron"]
+  }
+};
+
+function applyTranslation(lang) {
+  const t = translations[lang];
+
+  document.querySelector(".navbar-title a").textContent = t.title;
+  document.querySelector("h2").textContent = t.calcTitle;
+  document.querySelector('label[for="troopLevel"]').textContent = t.troopLabel;
+  document.querySelector('label[for="trainingTime"]').textContent = t.timeLabel;
+  document.querySelector('label[for="piyade"]').textContent = t.piyadeLabel;
+  document.querySelector('label[for="mizrakci"]').textContent = t.mizrakciLabel;
+  document.querySelector('label[for="nisanci"]').textContent = t.nisanciLabel;
+  document.querySelector("button").textContent = t.button;
+  document.querySelector("h3:nth-of-type(1)").textContent = t.countTitle;
+  document.querySelector("h3:nth-of-type(2)").textContent = t.totalTitle;
+
+  const spans = document.querySelectorAll("span");
+  const paragraphs = document.querySelectorAll(".container p");
+
+  paragraphs[0].childNodes[0].textContent = `${t.labels[0]}: `;
+  paragraphs[1].childNodes[0].textContent = `${t.labels[1]}: `;
+  paragraphs[2].childNodes[0].textContent = `${t.labels[2]}: `;
+  paragraphs[3].childNodes[0].textContent = `${t.labels[3]}: `;
+  paragraphs[4].childNodes[0].textContent = `${t.labels[4]}: `;
+  paragraphs[5].childNodes[0].textContent = `${t.labels[5]}: `;
+  paragraphs[6].childNodes[0].textContent = `${t.labels[6]}: `;
+}
+
+document.getElementById("language-selector").addEventListener("change", function () {
+  applyTranslation(this.value);
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  applyTranslation(document.getElementById("language-selector").value);
+});
   </script>
 </body>
 </html>
