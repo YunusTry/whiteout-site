@@ -198,10 +198,10 @@
     <p>Nişancı: <span id="resultNisanci">-</span></p>
 
     <h3>Toplam Gereksinim</h3>
-    <p>Et: <span id="totalEt">-</span></p>
-    <p>Odun: <span id="totalOdun">-</span></p>
-    <p>Kömür: <span id="totalKomur">-</span></p>
-    <p>Demir: <span id="totalDemir">-</span></p>
+<p><b>Et:</b> <span id="et">-</span></p>
+<p><b>Odun:</b> <span id="odun">-</span></p>
+<p><b>Kömür:</b> <span id="komur">-</span></p>
+<p><b>Demir:</b> <span id="demir">-</span></p>
   </div>
 
   <script>
@@ -308,5 +308,97 @@
       document.getElementById("totalKomur").innerText = totalKomur.toLocaleString("tr-TR");
       document.getElementById("totalDemir").innerText = totalDemir.toLocaleString("tr-TR");
     }
+    
+  const translations = {
+  tr: {
+    title: "Hesaplama Aracı",
+    labels: {
+      troopLevel: "Asker Seviyesi Seçin (T1-T10)",
+      trainingTime: "1 asker için eğitim süresi (saniye)",
+      piyade: "Piyade için hızlandırma süresi (saat)",
+      mizrakci: "Mızrakçı için hızlandırma süresi (saat)",
+      nisanci: "Nişancı için hızlandırma süresi (saat)"
+    },
+    buttons: {
+      calculate: "Hesapla"
+    },
+    results: {
+      soldierCounts: "Asker Sayıları",
+      totalResources: "Toplam Gereksinim",
+      piyade: "Piyade",
+      mizrakci: "Mızrakçı",
+      nisanci: "Nişancı",
+      et: "Et",
+      odun: "Odun",
+      komur: "Kömür",
+      demir: "Demir",
+      error: "Bölme hatası!"
+    },
+    titleBar : "Ana Sayfa"
+  },
+  en: {
+    title: "Calculation Tool",
+    labels: {
+      troopLevel: "Select Troop Level (T1-T10)",
+      trainingTime: "Training time per troop (seconds)",
+      piyade: "Infantry speed-up time (hours)",
+      mizrakci: "Lancer speed-up time (hours)",
+      nisanci: "Marksman speed-up time (hours)"
+    },
+    buttons: {
+      calculate: "Calculate"
+    },
+    results: {
+      soldierCounts: "Troop Counts",
+      totalResources: "Total Requirements",
+      piyade: "Infantry",
+      mizrakci: "Lancer",
+      nisanci: "Marksman",
+      et: "Meat",
+      odun: "Wood",
+      komur: "Coal",
+      demir: "Iron",
+      error: "Division error!"
+    },
+    titleBar: "Home"
+  }
+};
+
+
+
+document.getElementById("language-selector").addEventListener("change", function () {
+  const lang = this.value;
+  const data = translations[lang];
+
+  document.querySelector("h2").textContent = data.title;
+  document.querySelector("label[for='troopLevel']").textContent = data.labels.troopLevel;
+  document.querySelector("label[for='trainingTime']").textContent = data.labels.trainingTime;
+  document.querySelector("label[for='piyade']").textContent = data.labels.piyade;
+  document.querySelector("label[for='mizrakci']").textContent = data.labels.mizrakci;
+  document.querySelector("label[for='nisanci']").textContent = data.labels.nisanci;
+  document.querySelector("button").textContent = data.buttons.calculate;
+  document.querySelector(".navbar-title a").textContent = data.titleBar;
+  document.querySelector("h3:nth-of-type(1)").textContent = data.results.soldierCounts;
+  document.querySelector("h3:nth-of-type(2)").textContent = data.results.totalResources;
+
+  document.getElementById("resultPiyade").parentElement.firstChild.textContent = data.results.piyade + " ";
+  document.getElementById("resultMizrakci").parentElement.firstChild.textContent = data.results.mizrakci + " ";
+  document.getElementById("resultNisanci").parentElement.firstChild.textContent = data.results.nisanci + " ";
+
+  const resourceLabels = {
+    et: data.results.et,
+    odun: data.results.odun,
+    komur: data.results.komur,
+    demir: data.results.demir
+  };
+
+  document.querySelectorAll(".container p span").forEach((span) => {
+    const id = span.id;
+    if (resourceLabels[id]) {
+      span.parentElement.firstChild.textContent = resourceLabels[id] + ": ";
+    }
+  });
+});
+
   </script>
 </body>
