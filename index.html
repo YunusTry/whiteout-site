@@ -120,6 +120,18 @@
                 width: 100%;
             }
         }
+        #language-selector {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: none;
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .nav-icons, #language-selector {
+                justify-content: center;
+                width: 100%;
+                margin-top: 10px;
+            }
     </style>
 </head>
 <body>
@@ -207,5 +219,57 @@
         </a>
     </div>
 </div>
+    <script>
+    const translations = {
+  tr: {
+    title: "Whiteout Survival Etkinlikleri",
+    cards: [
+      "Buz Alanı Kralı",
+      "En Güçlü Eyalet",
+      "Şeflerin Salonu",
+      "Özel Etkinlik",
+      "1. Silahlanma Yarışı",
+      "1. Subay Projesi",
+      "2. Silahlanma Yarışı",
+      "2. Subay Projesi",
+      "Şef Donanımı Gerekli Malzeme Hesaplama",
+      "Şef Tılsımı Gerekli Malzeme Hesaplama",
+      "Asker Eğitimi Hesaplama",
+      "Eyalet Transferi Grupları"
+    ]
+  },
+  en: {
+    title: "Whiteout Survival Events",
+    cards: [
+      "King Of The Icefield",
+      "State vs State",
+      "Chiefs' Hall",
+      "Special Event",
+      "1st Armament Competition",
+      "1st Officer Project",
+      "2nd Armament Competiton",
+      "2nd Officer Project",
+      "Chief Gear Material Calculator",
+      "Chief Charm Material Calculator",
+      "Troop Training Calculator",
+      "State Transfer Groups"
+    ]
+  }
+  
+};
+document.getElementById("language-selector").addEventListener("change", function () {
+        const lang = this.value;
+        const data = translations[lang];
+
+        document.querySelector(".navbar-title").textContent = data.title;
+
+        const cardTitles = document.querySelectorAll(".card h2");
+        cardTitles.forEach((card, index) => {
+            if (data.cards[index]) {
+                card.textContent = data.cards[index];
+            }
+        });
+    });
+</script>
 </body>
 </html>
