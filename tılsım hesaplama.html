@@ -51,28 +51,29 @@
       transform: scale(1.15);
       opacity: 0.85;
     }
+
     .header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-.nav-icons {
-    display: flex;
-    gap: 10px;
-}
+    .nav-icons {
+      display: flex;
+      gap: 10px;
+    }
 
-#language-selector {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: none;
-    background-color: #f0f0f0;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    color: black;
-}
+    #language-selector {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: none;
+      background-color: #f0f0f0;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      color: black;
+    }
 
     h1 {
       text-align: center;
@@ -156,27 +157,25 @@
       color: white;
     }
   </style>
-
 </head>
 <body>
   <header>
-  <div class="navbar-title" id="site-title">
-    <a href="index.html" style="text-decoration: none; color: white;">Ana Sayfa</a>
-  </div>
-  <div class="header-right">
-    <div class="nav-icons">
-      <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
-      <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+    <div class="navbar-title" id="site-title">
+      <a href="index.html" id="home-link" style="text-decoration: none; color: white;">Ana Sayfa</a>
     </div>
-    <select id="language-selector">
-      <option value="tr">🇹🇷 Türkçe</option>
-      <option value="en">🇺🇸 English</option>
-    </select>
-  </div>
-</header>
+    <div class="header-right">
+      <div class="nav-icons">
+        <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
+        <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+      </div>
+      <select id="language-selector">
+        <option value="tr">🇹🇷 Türkçe</option>
+        <option value="en">🇺🇸 English</option>
+      </select>
+    </div>
+  </header>
 
-
-  <h1>Şef Tılsımı Hesaplama</h1>
+  <h1 id="main-title">Şef Tılsımı Hesaplama</h1>
 
   <div class="category">
     <div class="category-title">Mızrakçı</div>
@@ -193,7 +192,8 @@
     <div class="equipment-container" id="nisanci"></div>
   </div>
 
-  <button onclick="calculateTotal()">Hesapla</button>
+  <button id="calculate-btn" onclick="calculateTotal()">Hesapla</button>
+
   <div class="results" id="results"></div>
 
   <script>
@@ -218,47 +218,80 @@
     ];
 
     const equipments = {
-      "Mızrakçı - Kask": { id: "kask", category: "mizrakci" },
-      "Mızrakçı - Pusula": { id: "pusula", category: "mizrakci" },
-      "Piyade - Ceket": { id: "ceket", category: "piyade" },
-      "Piyade - Pantolon": { id: "pantolon", category: "piyade" },
-      "Nişancı - Yüzük": { id: "yuzuk", category: "nisanci" },
-      "Nişancı - Baston": { id: "baston", category: "nisanci" },
+      "kask": { category: "mizrakci" },
+      "pusula": { category: "mizrakci" },
+      "ceket": { category: "piyade" },
+      "pantolon": { category: "piyade" },
+      "yuzuk": { category: "nisanci" },
+      "baston": { category: "nisanci" },
+    };
+
+    const translations = {
+      tr: {
+        title: "Şef Tılsımı Hesaplama",
+        categoryTitles: ["Mızrakçı", "Piyade", "Nişancı"],
+        button: "Hesapla",
+        resultsTitle: "Toplam Malzeme İhtiyacı",
+        resources: ["Rehber", "Planlar", "Kitap"],
+        upgrades: ["Yükseltme 1", "Yükseltme 2", "Yükseltme 3"],
+        homepage: "Ana Sayfa",
+        equipmentLabels: {
+          "kask": "Mızrakçı - Kask",
+          "pusula": "Mızrakçı - Pusula",
+          "ceket": "Piyade - Ceket",
+          "pantolon": "Piyade - Pantolon",
+          "yuzuk": "Nişancı - Yüzük",
+          "baston": "Nişancı - Baston"
+        }
+      },
+      en: {
+        title: "Chief Charm Calculator",
+        categoryTitles: ["Lancer", "Infantry", "Marksmen"],
+        button: "Calculate",
+        resultsTitle: "Total Material Requirements",
+        resources: ["Guide", "Plans", "Book"],
+        upgrades: ["Upgrade 1", "Upgrade 2", "Upgrade 3"],
+        homepage: "Home",
+        equipmentLabels: {
+          "kask": "Lancer - Helmet",
+          "pusula": "Lancer - Compass",
+          "ceket": "Infantry - Chest",
+          "pantolon": "Infantry - Pants",
+          "yuzuk": "Marksman - Ring",
+          "baston": "Marksman - Staff"
+        }
+      }
     };
 
     function createLevelOptions() {
-      let opts = "";
-      for (let i = 0; i < levels.length; i++) {
-        opts += `<option value="${i}">Seviye ${i}</option>`;
-      }
-      return opts;
+      return levels.map((_, i) => `<option value="${i}">Level ${i}</option>`).join('');
     }
 
     function createEquipmentFields() {
-      for (const [label, data] of Object.entries(equipments)) {
+      for (const key in equipments) {
         const section = document.createElement("div");
         section.className = "equipment-section";
-        section.innerHTML = `<h2>${label}</h2>`;
+        section.id = `${key}_section`;
+        section.innerHTML = `<h2 id="${key}_label">${translations.tr.equipmentLabels[key]}</h2>`;
         for (let i = 1; i <= 3; i++) {
           section.innerHTML += `
             <div class="upgrade-group">
-              <label>Yükseltme ${i}:</label>
-              <select id="${data.id}_start${i}">${createLevelOptions()}</select>
+              <label id="${key}_label${i}">${translations.tr.upgrades[i - 1]}</label>
+              <select id="${key}_start${i}">${createLevelOptions()}</select>
               →
-              <select id="${data.id}_end${i}">${createLevelOptions()}</select>
-            </div>
-          `;
+              <select id="${key}_end${i}">${createLevelOptions()}</select>
+            </div>`;
         }
-        document.getElementById(data.category).appendChild(section);
+        document.getElementById(equipments[key].category).appendChild(section);
       }
     }
 
     function calculateTotal() {
       let total = { guide: 0, plans: 0, book: 0 };
-      for (const data of Object.values(equipments)) {
+      for (const key in equipments) {
         for (let i = 1; i <= 3; i++) {
-          const start = parseInt(document.getElementById(`${data.id}_start${i}`).value);
-          const end = parseInt(document.getElementById(`${data.id}_end${i}`).value);
+          const start = parseInt(document.getElementById(`${key}_start${i}`).value);
+          const end = parseInt(document.getElementById(`${key}_end${i}`).value);
           for (let l = start + 1; l <= end; l++) {
             total.guide += levels[l].guide;
             total.plans += levels[l].plans;
@@ -266,13 +299,35 @@
           }
         }
       }
+      const lang = document.getElementById("language-selector").value;
+      const labels = translations[lang].resources;
       document.getElementById("results").innerHTML = `
-        <h2>Toplam Malzeme İhtiyacı</h2>
-        <p><strong>Guide:</strong> ${total.guide}</p>
-        <p><strong>Plans:</strong> ${total.plans}</p>
-        <p><strong>Book:</strong> ${total.book}</p>
+        <h2>${translations[lang].resultsTitle}</h2>
+        <p><strong>${labels[0]}:</strong> ${total.guide}</p>
+        <p><strong>${labels[1]}:</strong> ${total.plans}</p>
+        <p><strong>${labels[2]}:</strong> ${total.book}</p>
       `;
     }
+
+    document.getElementById("language-selector").addEventListener("change", function () {
+      const lang = this.value;
+      const data = translations[lang];
+
+      document.getElementById("main-title").textContent = data.title;
+      document.getElementById("site-title").querySelector("a").textContent = data.homepage;
+      document.querySelectorAll(".category-title").forEach((el, i) => el.textContent = data.categoryTitles[i]);
+      document.getElementById("calculate-btn").textContent = data.button;
+
+      for (const key in equipments) {
+        document.getElementById(`${key}_label`).textContent = data.equipmentLabels[key];
+        for (let i = 1; i <= 3; i++) {
+          document.getElementById(`${key}_label${i}`).textContent = data.upgrades[i - 1];
+        }
+      }
+
+      const resultTitle = document.querySelector(".results h2");
+      if (resultTitle) calculateTotal();
+    });
 
     createEquipmentFields();
   </script>
