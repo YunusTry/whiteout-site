@@ -176,6 +176,31 @@ button:hover {
 .entry-group {
     flex: 1;
 }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Var olanı güncellemek istersen */
+.nav-icons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Select için daha hoş görünüm */
+#language-selector {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  color: black;
+}
+
 
 @media (max-width: 768px) {
     .input-group,
@@ -192,14 +217,21 @@ button:hover {
 </head>
 <body>
     <header>
-    <div class="navbar-title">
-    <a href="index.html" style="text-decoration: none; color: white;">Ana Sayfa</a>
+  <div class="navbar-title" id="site-title">
+    <a href="index.html" id="home-link" style="text-decoration: none; color: white;">Ana Sayfa</a>
   </div>
-  <div class="nav-icons">
-    <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
-    <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+  <div class="nav-right">
+    <div class="nav-icons">
+      <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
+      <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+    </div>
+    <select id="language-selector">
+      <option value="tr">🇹🇷 Türkçe</option>
+      <option value="en">🇺🇸 English</option>
+    </select>
   </div>
-  </header>
+</header>
+
       </a>
     <h1>Silahlandırma Yarışı 1 - Puan Hesaplama</h1>
     <div class="container">
@@ -215,17 +247,17 @@ button:hover {
             <div id="fireDustScore" class="score"></div>
         </div>
         <div class="input-group">
-            <label for="buildBoost">İnşaat Hızlandırması(dk)</label>
+            <label for="buildBoost">İnşaat Hızlandırması</label>
             <input type="number" id="buildBoost" placeholder="Değer girin">
             <div id="buildBoostScore" class="score"></div>
         </div>
         <div class="input-group">
-            <label for="troopBoost">Asker Hızlandırması(dk)</label>
+            <label for="troopBoost">Asker Hızlandırması</label>
             <input type="number" id="troopBoost" placeholder="Değer girin">
             <div id="troopBoostScore" class="score"></div>
         </div>
         <div class="input-group">
-            <label for="researchBoost">Araştırma Hızlandırması(dk)</label>
+            <label for="researchBoost">Araştırma Hızlandırması</label>
             <input type="number" id="researchBoost" placeholder="Değer girin">
             <div id="researchBoostScore" class="score"></div>
         </div>
@@ -424,6 +456,129 @@ button:hover {
     // 5. Ekrana yaz
     document.getElementById('totalScore').innerText = `Toplam Puan: ${totalScore.toLocaleString()}`;
 }
+
+document.getElementById("language-selector").addEventListener("change", function () {
+  const lang = this.value;
+  const t = translations[lang];
+
+  // Başlık
+  document.querySelector("h1").textContent = t.title;
+
+  // Buton
+  document.querySelector("button").textContent = t.button;
+
+  // Genel toplam sonucu yazısı
+  const totalScoreEl = document.getElementById("totalScore");
+  const currentScore = totalScoreEl.textContent.match(/\d+/); // varsa sayı yakala
+  totalScoreEl.textContent = currentScore
+    ? `${t.totalScore} ${currentScore[0]}`
+    : t.totalScore;
+
+  // Bölüm başlıkları
+  const sectionTitles = document.querySelectorAll(".section h2");
+  sectionTitles[0].textContent = t.sections.chiefGear;
+  sectionTitles[1].textContent = t.sections.lancer;
+  sectionTitles[2].textContent = t.sections.infantry;
+  sectionTitles[3].textContent = t.sections.marksman;
+
+  // Etiketler
+  const labels = {
+    fireCrystal: "fireCrystal",
+    fireDust: "fireDust",
+    buildBoost: "buildBoost",
+    troopBoost: "troopBoost",
+    researchBoost: "researchBoost",
+    mythHero: "mythHero",
+    epicHero: "epicHero",
+    rareHero: "rareHero",
+    headgearFrom: "headgear",
+    headgearTo: "headgear",
+    compassFrom: "compass",
+    compassTo: "compass",
+    chestFrom: "chest",
+    chestTo: "chest",
+    pantsFrom: "pants",
+    pantsTo: "pants",
+    ringFrom: "ring",
+    ringTo: "ring",
+    staffFrom: "staff",
+    staffTo: "staff"
+  };
+
+  Object.entries(labels).forEach(([id, key]) => {
+    const label = document.querySelector(`label[for=${id}]`);
+    if (label) {
+      if (id.includes("From")) {
+        label.textContent = `${t.labels[key]} (${lang === "tr" ? "Başlangıç" : "From"})`;
+      } else if (id.includes("To")) {
+        label.textContent = `${t.labels[key]} (${lang === "tr" ? "Hedef" : "To"})`;
+      } else {
+        label.textContent = t.labels[key];
+      }
+    }
+  });
+});
+
+const translations = {
+  tr: {
+    title: "Silahlandırma Yarışı 1 - Puan Hesaplama",
+    totalScore: "Genel Toplam Puan:",
+    button: "TOPLAM PUAN",
+    sections: {
+      chiefGear: "Şef Donanımı",
+      lancer: "Mızrakçı",
+      infantry: "Piyade",
+      marksman: "Nişancı"
+    },
+    labels: {
+      fireCrystal: "Ateş Kristali Sayısı",
+      fireDust: "Ateş Kristali Tozu Sayısı",
+      buildBoost: "İnşaat Hızlandırması(dk)",
+      troopBoost: "Asker Hızlandırması(dk)",
+      researchBoost: "Araştırma Hızlandırması(dk)",
+      mythHero: "Mitik Kahraman Parçası",
+      epicHero: "Epik Kahraman Parçası",
+      rareHero: "Ender Kahraman Parçası",
+      headgear: "Kafalık",
+      compass: "Pusula",
+      chest: "Göğüslük",
+      pants: "Pantolon",
+      ring: "Yüzük",
+      staff: "Baston"
+    }
+  },
+  en: {
+    title: "Armament Competition 1 - Point Calculator",
+    totalScore: "Total Score:",
+    button: "CALCULATE TOTAL",
+    sections: {
+      chiefGear: "Chief Gear",
+      lancer: "Lancer",
+      infantry: "Infantry",
+      marksman: "Marksman"
+    },
+    labels: {
+      fireCrystal: "Fire Crystal Count",
+      fireDust: "Fire Dust Count",
+      buildBoost: "Construction Speedup (min)",
+      troopBoost: "Troop Speedup (min)",
+      researchBoost: "Research Speedup (min)",
+      mythHero: "Mythic Hero Fragment",
+      epicHero: "Epic Hero Fragment",
+      rareHero: "Rare Hero Fragment",
+      headgear: "Helmet",
+      compass: "Compass",
+      chest: "Chestplate",
+      pants: "Pants",
+      ring: "Ring",
+      staff: "Staff"
+    }
+  }
+};
+
+
+
+
 
     </script>
 </body>
