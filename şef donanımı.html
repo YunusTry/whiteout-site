@@ -19,6 +19,12 @@
             margin: 0;
             padding-top: 70px; /* Header için boşluk bıraktım */
         }
+.header-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 12px;
+}
 
         header {
     background: linear-gradient(90deg, #2196f3, #21cbf3);
@@ -40,11 +46,7 @@
     margin-left: 10px; /* Yazıyı sola kaydırdım */
 }
 
-.nav-icons {
-    display: flex;
-    gap: 15px;
-    margin-left: 1100px; /* Görselleri biraz sola çekerek tam görünür hale getirdim */
-}
+
 
 .nav-icons a img {
     width: 42px;
@@ -57,6 +59,25 @@
 .nav-icons a img:hover {
     transform: scale(1.15);
     opacity: 0.85;
+}
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+#language-selector {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  color: black;
 }
 
 
@@ -165,14 +186,20 @@
 
 </head>
 <header>
-    <div class="navbar-title">
-        <a href="index.html" style="text-decoration: none; color: white;">Ana Sayfa</a>
+    <div class="navbar-title" id="site-title">
+      <a href="index.html" id="home-link" style="text-decoration: none; color: white;">Ana Sayfa</a>
     </div>
-    <div class="nav-icons">
+    <div class="header-right">
+      <div class="nav-icons">
         <a href="index.html"><img src="ana sayfa.jpg" alt="Ana Sayfa"></a>
         <a href="https://www.instagram.com/yunusworkout/" target="_blank"><img src="insta.jpg" alt="Instagram"></a>
+      </div>
+      <select id="language-selector">
+        <option value="tr">🇹🇷 Türkçe</option>
+        <option value="en">🇺🇸 English</option>
+      </select>
     </div>
-</header>
+  </header>
 
 
 
@@ -302,9 +329,11 @@ donanimlar.forEach(d => {
 });
 
 function hepsiHesapla() {
-    let  toplamAlloy = 0, toplamSolution = 0, toplamPlans = 0, toplamAmber = 0;
+    const lang = document.getElementById("language-selector").value;
+    const t = translations[lang].equipment;
+    const res = t.resources;
 
-    
+    let toplamAlloy = 0, toplamSolution = 0, toplamPlans = 0, toplamAmber = 0;
 
     donanimlar.forEach(d => {
         const from = parseInt(document.getElementById(d.from).value);
@@ -312,44 +341,123 @@ function hepsiHesapla() {
 
         const resultEl = document.getElementById(d.result);
         if (from >= to) {
-            resultEl.innerHTML = "<b>Hedef seviye, başlangıçtan yüksek olmalı.</b>";
+            resultEl.innerHTML = `<b>${t.resultWarning}</b>`;
             return;
         }
 
         const aralik = levels.filter(l => l.code > from && l.code <= to);
         const toplam = aralik.reduce((acc, l) => {
-            acc.alloy += l.alloy;  // Sabit kalıyor
-            acc.solution += l.solution;  // Sabit kalıyor
-            acc.plans += l.plans;  // Sabit kalıyor
-            acc.amber += l.amber;  // Sabit kalıyor
+            acc.alloy += l.alloy;
+            acc.solution += l.solution;
+            acc.plans += l.plans;
+            acc.amber += l.amber;
             return acc;
         }, { alloy: 0, solution: 0, plans: 0, amber: 0 });
 
-        
         toplamAlloy += toplam.alloy;
         toplamSolution += toplam.solution;
         toplamPlans += toplam.plans;
         toplamAmber += toplam.amber;
 
         resultEl.innerHTML = `
-            
-            <div><strong>Sert Alaşım:</strong> ${toplam.alloy}</div>
-            <div><strong>Cila Çözeltisi:</strong> ${toplam.solution}</div>
-            <div><strong>Tasarım Planı:</strong> ${toplam.plans}</div>
-            <div><strong>Amber:</strong> ${toplam.amber}</div>
+            <div><strong>${res.alloy}:</strong> ${toplam.alloy}</div>
+            <div><strong>${res.solution}:</strong> ${toplam.solution}</div>
+            <div><strong>${res.plans}:</strong> ${toplam.plans}</div>
+            <div><strong>${res.amber}:</strong> ${toplam.amber}</div>
         `;
     });
 
     document.getElementById('summary').innerHTML = `
-        <h3>Genel Toplam</h3>
-        
-        <div><strong>Sert Alaşım:</strong> ${toplamAlloy}</div>
-        <div><strong>Cila Çözeltisi:</strong> ${toplamSolution}</div>
-        <div><strong>Tasarım Planı:</strong> ${toplamPlans}</div>
-        <div><strong>Amber:</strong> ${toplamAmber}</div>
+        <h3>${t.summary}</h3>
+        <div><strong>${res.alloy}:</strong> ${toplamAlloy}</div>
+        <div><strong>${res.solution}:</strong> ${toplamSolution}</div>
+        <div><strong>${res.plans}:</strong> ${toplamPlans}</div>
+        <div><strong>${res.amber}:</strong> ${toplamAmber}</div>
     `;
 }
 
+document.getElementById("language-selector").addEventListener("change", function () {
+  const lang = this.value;
+
+  // Önceki hesaplama sayfası çevirileri
+  const data = translations[lang];
+  // ... var olan hesaplama sayfası metin güncellemeleri ...
+
+  // Donanım bölümü varsa, onu da güncelle
+  updateEquipmentTexts(lang);
+});
+function updateEquipmentTexts(lang) {
+  const eq = translations[lang].equipment;
+  document.querySelector(".container h2").textContent = eq.title;
+
+  const headers = document.querySelectorAll(".donanim-group h3");
+  headers[0].textContent = eq.groups.lancer;
+  headers[1].textContent = eq.groups.infantry;
+  headers[2].textContent = eq.groups.marksman;
+
+  document.querySelector("button").textContent = eq.button;
+
+  const labels = document.querySelectorAll(".donanim-group label");
+  const itemKeys = ["head", "compass", "chest", "pants", "staff", "ring"];
+  itemKeys.forEach((key, index) => {
+    labels[index].textContent = eq.items[key];
+  });
+}
+const translations = {
+  tr: {},
+  en: {}
+};
+translations.tr.equipment = {
+  title: "Donanım Yükseltme Hesaplayıcı",
+  groups: {
+    lancer: "Mızrakçı Donanımları",
+    infantry: "Piyade Donanımları",
+    marksman: "Nişancı Donanımları"
+  },
+  items: {
+    head: "Kafalık",
+    compass: "Pusula",
+    chest: "Göğüslük",
+    pants: "Pantolon",
+    staff: "Baston",
+    ring: "Yüzük"
+  },
+  button: "HESAPLA",
+  resultWarning: "Hedef seviye, başlangıçtan yüksek olmalı.",
+  summary: "Genel Toplam",
+  resources: {
+    alloy: "Sert Alaşım",
+    solution: "Cila Çözeltisi",
+    plans: "Tasarım Planı",
+    amber: "Amber"
+  }
+};
+
+translations.en.equipment = {
+  title: "Equipment Upgrade Calculator",
+  groups: {
+    lancer: "Lancer Equipment",
+    infantry: "Infantry Equipment",
+    marksman: "Marksman Equipment"
+  },
+  items: {
+    head: "Helmet",
+    compass: "Compass",
+    chest: "Chestplate",
+    pants: "Pants",
+    staff: "Staff",
+    ring: "Ring"
+  },
+  button: "CALCULATE",
+  resultWarning: "Target level must be higher than the starting level.",
+  summary: "Total Summary",
+  resources: {
+    alloy: "Hardened Alloy",
+    solution: "Polish Solution",
+    plans: "Design Plan",
+    amber: "Lunar Amber"
+  }
+};
 
 </script>
 </body>
