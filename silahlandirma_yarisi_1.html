@@ -591,6 +591,10 @@ const translations = {
     }
   }
 };
+window.addEventListener("DOMContentLoaded", () => {
+  const currentLang = document.getElementById("language-selector").value;
+  document.getElementById("language-selector").dispatchEvent(new Event("change"));
+});
 
 
 
