@@ -242,6 +242,11 @@ button:hover {
             <div id="fireCrystalScore" class="score"></div>
         </div>
         <div class="input-group">
+            <label for="reffireCrystal">Arıtılmış Ateş Kristali Sayısı</label>
+            <input type="number" id="reffireCrystal" placeholder="Değer girin">
+            <div id="reffireCrystalScore" class="score"></div>
+        </div>
+        <div class="input-group">
             <label for="fireDust">Ateş Kristali Tozu Sayısı</label>
             <input type="number" id="fireDust" placeholder="Değer girin">
             <div id="fireDustScore" class="score"></div>
@@ -432,6 +437,7 @@ button:hover {
 
     // 2. Diğer puanlar
     const fireCrystal = (parseFloat(document.getElementById('fireCrystal').value) || 0) * 100;
+    const reffireCrystal = (parseFloat(document.getElementById('reffireCrystal').value) || 0) * 1500;
     const fireDust = (parseFloat(document.getElementById('fireDust').value) || 0) * 50;
     const buildBoost = parseFloat(document.getElementById('buildBoost').value) || 0;
     const troopBoost = parseFloat(document.getElementById('troopBoost').value) || 0;
@@ -441,17 +447,19 @@ button:hover {
     const rareHero = (parseFloat(document.getElementById('rareHero').value) || 0) * 15;
 
     // 3. Alt metinleri güncelle
-    document.getElementById('fireCrystalScore').innerText = `Puan: ${fireCrystal}`;
-    document.getElementById('fireDustScore').innerText = `Puan: ${fireDust}`;
-    document.getElementById('buildBoostScore').innerText = `Puan: ${buildBoost}`;
-    document.getElementById('troopBoostScore').innerText = `Puan: ${troopBoost}`;
-    document.getElementById('researchBoostScore').innerText = `Puan: ${researchBoost}`;
-    document.getElementById('mythHeroScore').innerText = `Puan: ${mythHero}`;
-    document.getElementById('epicHeroScore').innerText = `Puan: ${epicHero}`;
-    document.getElementById('rareHeroScore').innerText = `Puan: ${rareHero}`;
+    const scoreLabel = t.pointLabel;
+    document.getElementById('fireCrystalScore').innerText = `${scoreLabel} ${fireCrystal}`;
+    document.getElementById('reffireCrystalScore').innerText = `${scoreLabel} ${reffireCrystal}`;
+    document.getElementById('fireDustScore').innerText = `${scoreLabel} ${fireDust}`;
+    document.getElementById('buildBoostScore').innerText = `${scoreLabel} ${buildBoost}`;
+    document.getElementById('troopBoostScore').innerText = `${scoreLabel}${troopBoost}`;
+    document.getElementById('researchBoostScore').innerText = `${scoreLabel} ${researchBoost}`;
+    document.getElementById('mythHeroScore').innerText = `${scoreLabel} ${mythHero}`;
+    document.getElementById('epicHeroScore').innerText = `${scoreLabel} ${epicHero}`;
+    document.getElementById('rareHeroScore').innerText = `${scoreLabel} ${rareHero}`;
 
     // 4. Toplamı birleştir
-    const totalScore = equipmentScore + fireCrystal + fireDust + buildBoost + troopBoost + researchBoost + mythHero + epicHero + rareHero;
+    const totalScore = equipmentScore + reffireCrystal + fireCrystal + fireDust + buildBoost + troopBoost + researchBoost + mythHero + epicHero + rareHero;
 
     // 5. Ekrana yaz
     document.getElementById('totalScore').innerText = `Toplam Puan: ${totalScore.toLocaleString()}`;
@@ -483,6 +491,7 @@ document.getElementById("language-selector").addEventListener("change", function
 
   // Etiketler
   const labels = {
+    reffireCrystal : "reffireCrystal" ,
     fireCrystal: "fireCrystal",
     fireDust: "fireDust",
     buildBoost: "buildBoost",
@@ -522,6 +531,7 @@ document.getElementById("language-selector").addEventListener("change", function
 const translations = {
   tr: {
     title: "Silahlandırma Yarışı 1 - Puan Hesaplama",
+    pointLabel: "Puan:",
     totalScore: "Genel Toplam Puan:",
     button: "TOPLAM PUAN",
     sections: {
@@ -529,8 +539,10 @@ const translations = {
       lancer: "Mızrakçı",
       infantry: "Piyade",
       marksman: "Nişancı"
+      
     },
     labels: {
+      reffireCrystal:"Arıtılmış Ateş Kristali Sayısı",
       fireCrystal: "Ateş Kristali Sayısı",
       fireDust: "Ateş Kristali Tozu Sayısı",
       buildBoost: "İnşaat Hızlandırması(dk)",
@@ -545,12 +557,14 @@ const translations = {
       pants: "Pantolon",
       ring: "Yüzük",
       staff: "Baston"
+      
     }
   },
   en: {
     title: "Armament Competition 1 - Point Calculator",
     totalScore: "Total Score:",
     button: "CALCULATE TOTAL",
+    pointLabel: "Score:",
     sections: {
       chiefGear: "Chief Gear",
       lancer: "Lancer",
@@ -559,9 +573,10 @@ const translations = {
     },
     labels: {
       fireCrystal: "Fire Crystal Count",
-      fireDust: "Fire Dust Count",
+      reffireCrystal: "Refined Fire Crystal Count",
+      fireDust: "Fire Crystal Shard Count",
       buildBoost: "Construction Speedup (min)",
-      troopBoost: "Troop Speedup (min)",
+      troopBoost: "Troop Training Speedup (min)",
       researchBoost: "Research Speedup (min)",
       mythHero: "Mythic Hero Fragment",
       epicHero: "Epic Hero Fragment",
@@ -572,6 +587,7 @@ const translations = {
       pants: "Pants",
       ring: "Ring",
       staff: "Staff"
+      
     }
   }
 };
